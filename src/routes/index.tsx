@@ -44,7 +44,7 @@ function Index() {
           </p>
           <div className="mt-14 flex flex-col items-center gap-3 opacity-95">
             <span className="text-[11px] md:text-xs tracking-[0.3em] uppercase opacity-75">Powered by</span>
-            <img src={absolxLogo} alt="AbsolX" className="h-20 md:h-28 w-auto drop-shadow-2xl" />
+            <img src={absolxLogo} alt="AbsolX" className="h-12 md:h-16 w-auto drop-shadow-2xl" />
           </div>
         </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/70 text-xs tracking-display uppercase animate-bounce">
