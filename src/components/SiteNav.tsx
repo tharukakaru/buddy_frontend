@@ -8,19 +8,17 @@ export function SiteNav() {
     <header className="absolute top-0 left-0 right-0 z-50">
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-6 flex items-center justify-between">
         <nav className="flex items-center gap-8">
-          <Link to="/about" className={linkCls}>About</Link>
-          <Link to="/foundation" className={linkCls}>Foundation</Link>
+          <Link to="/about" className={linkCls}>About Us</Link>
+          <Link to="/foundation" className={linkCls}>JFT</Link>
         </nav>
         <Link
           to="/"
-          className="font-serif text-lg tracking-[0.4em] uppercase"
+          className="font-serif text-base md:text-lg tracking-[0.4em] uppercase whitespace-nowrap"
         >
-          Jinasena
+          Tissa Jinasena Group
         </Link>
-        <nav className="flex items-center gap-8">
-          <Link to="/jtf" className={linkCls}>JTF</Link>
+        <nav className="flex items-center gap-8 justify-end">
           <Link to="/courses" className={linkCls}>Courses</Link>
-          <Link to="/contact" className={linkCls}>Contact</Link>
         </nav>
       </div>
     </header>
