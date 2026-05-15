@@ -33,7 +33,7 @@ function CourseDetail() {
 
   return (
     <div className="bg-background">
-      <SiteNav />
+      <SiteNav variant="light" />
       <Toaster />
 
       {/* Udemy-style dark hero */}
