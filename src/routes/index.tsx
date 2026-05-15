@@ -25,7 +25,7 @@ function Index() {
 
   return (
     <div>
-      <SiteNav />
+      <SiteNav variant="light" />
 
       {/* Hero */}
       <section className="relative h-screen w-full overflow-hidden">

@@ -6,7 +6,7 @@ interface SiteNavProps {
   variant?: "light" | "dark";
 }
 
-export function SiteNav({ variant = "light" }: SiteNavProps) {
+export function SiteNav({ variant = "dark" }: SiteNavProps) {
   const nav = useNavigate();
   const [auth, setAuth] = useState<{ loggedIn: boolean; role: string | null }>({ loggedIn: false, role: null });
 
