@@ -1,9 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { useAuth } from "@/hooks/use-auth";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { User, Mail, Phone, MapPin, GraduationCap, BookOpen, Award, TrendingUp } from "lucide-react";
@@ -15,23 +13,31 @@ export const Route = createFileRoute("/profile")({
 
 function ProfilePage() {
   const nav = useNavigate();
-  const { user, profile, loading } = useAuth();
+  const [profile, setProfile] = useState<{ email: string; full_name: string; role: string } | null>(null);
 
   useEffect(() => {
-    if (!loading && !user) nav({ to: "/login" });
-  }, [user, loading, nav]);
+    const auth = sessionStorage.getItem("buddy_fake_auth") === "1";
+    const role = sessionStorage.getItem("buddy_role") || "student";
+    const email = sessionStorage.getItem("buddy_email") || "student@buddy.lk";
+    if (!auth || role !== "student") {
+      nav({ to: "/login" });
+      return;
+    }
+    setProfile({ email, full_name: email.split("@")[0].replace(/\./g, " "), role });
+  }, [nav]);
 
-  if (loading || !profile) {
+  if (!profile) {
     return <div className="min-h-screen flex items-center justify-center text-sm">Loading…</div>;
   }
 
-  const signOut = async () => {
-    await supabase.auth.signOut();
+  const signOut = () => {
+    sessionStorage.removeItem("buddy_fake_auth");
+    sessionStorage.removeItem("buddy_role");
+    sessionStorage.removeItem("buddy_email");
     toast.success("Signed out");
     nav({ to: "/" });
   };
 
-  // Mock progress (will wire to real data later)
   const stats = [
     { label: "Courses Enrolled", value: "3", icon: BookOpen },
     { label: "Avg Quiz Score", value: "74%", icon: Award },
@@ -52,15 +58,15 @@ function ProfilePage() {
 
       <section className="bg-foreground text-background pt-32 pb-12">
         <div className="mx-auto max-w-5xl px-6 md:px-12 flex flex-col md:flex-row gap-8 items-start">
-          <div className="w-28 h-28 rounded-full bg-gradient-to-br from-accent to-background/30 flex items-center justify-center text-3xl font-serif">
+          <div className="w-28 h-28 rounded-full bg-gradient-to-br from-accent to-background/30 flex items-center justify-center text-3xl font-serif capitalize">
             {(profile.full_name || profile.email)[0].toUpperCase()}
           </div>
           <div className="flex-1">
-            <div className="text-[10px] tracking-[0.4em] uppercase text-accent mb-2">— {profile.role}</div>
-            <h1 className="font-serif text-4xl md:text-5xl">{profile.full_name || "Buddy Learner"}</h1>
+            <div className="text-[10px] tracking-[0.4em] uppercase text-accent mb-2">— Student</div>
+            <h1 className="font-serif text-4xl md:text-5xl capitalize">{profile.full_name}</h1>
             <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] text-background/80">
               <span className="flex items-center gap-1.5"><Mail className="w-3.5 h-3.5" /> {profile.email}</span>
-              <span className="flex items-center gap-1.5"><GraduationCap className="w-3.5 h-3.5" /> Status: <strong className="text-accent">{profile.status}</strong></span>
+              <span className="flex items-center gap-1.5"><GraduationCap className="w-3.5 h-3.5" /> Status: <strong className="text-accent">Approved</strong></span>
             </div>
           </div>
           <button onClick={signOut} className="text-[11px] tracking-[0.3em] uppercase border border-background/40 px-5 py-2.5 hover:bg-background hover:text-foreground transition-colors">
@@ -68,6 +74,61 @@ function ProfilePage() {
           </button>
         </div>
       </section>
+
+      <div className="mx-auto max-w-5xl px-6 md:px-12 py-12 space-y-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {stats.map(s => (
+            <div key={s.label} className="border border-border p-5">
+              <s.icon className="w-4 h-4 text-accent mb-3" />
+              <div className="text-2xl font-serif">{s.value}</div>
+              <div className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mt-1">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div>
+          <h2 className="font-serif text-2xl mb-5">Personal Information</h2>
+          <div className="grid md:grid-cols-2 gap-x-10 gap-y-5 text-sm border border-border p-6">
+            <Info icon={<User />} label="Full Name" value={profile.full_name} />
+            <Info icon={<Mail />} label="Email" value={profile.email} />
+            <Info icon={<GraduationCap />} label="Student ID" value="JTF-2026-0182" />
+            <Info icon={<Phone />} label="Phone" value="+94 77 123 4567" />
+            <Info icon={<MapPin />} label="Home Town" value="Colombo" />
+            <Info icon={<Award />} label="Qualification" value="GCE A/L" />
+          </div>
+        </div>
+
+        <div>
+          <h2 className="font-serif text-2xl mb-5">My Courses</h2>
+          <div className="border border-border divide-y divide-border">
+            {courses.map(c => (
+              <div key={c.name} className="p-5 flex flex-col md:flex-row md:items-center gap-4">
+                <div className="flex-1">
+                  <div className="font-serif text-lg">{c.name}</div>
+                  <div className="text-[12px] text-muted-foreground mt-0.5">{c.days} days</div>
+                </div>
+                <div className="flex-1 max-w-xs">
+                  <div className="h-2 bg-secondary"><div className="h-full bg-accent" style={{ width: `${c.pct}%` }} /></div>
+                  <div className="text-[11px] text-muted-foreground mt-1">{c.pct}% complete</div>
+                </div>
+                <span className={`text-[10px] tracking-[0.25em] uppercase px-3 py-1.5 ${
+                  c.status === "On Track" ? "bg-accent/15 text-accent" :
+                  c.status === "Monitor" ? "bg-yellow-500/15 text-yellow-700" :
+                  "bg-orange-500/15 text-orange-700"
+                }`}>{c.status}</span>
+                <Link to="/courses" className="text-[11px] tracking-[0.25em] uppercase border-b border-foreground hover:text-accent hover:border-accent">
+                  Open →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <SiteFooter />
+    </div>
+  );
+}
 
       <div className="mx-auto max-w-5xl px-6 md:px-12 py-12 space-y-12">
         {/* Stats */}
