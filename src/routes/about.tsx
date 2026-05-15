@@ -1,0 +1,113 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import buddyRobot from "@/assets/buddy-robot.png";
+
+export const Route = createFileRoute("/about")({
+  component: AboutPage,
+  head: () => ({
+    meta: [
+      { title: "About Buddy — Knowledge companion, not just a chatbot" },
+      {
+        name: "description",
+        content:
+          "Buddy is a knowledge companion built to elevate human consciousness — born from Dr. Tissa Jinasena's vision and Buddhist philosophy.",
+      },
+    ],
+  }),
+});
+
+function Pillar({ sinhala, english, body }: { sinhala: string; english: string; body: string }) {
+  return (
+    <div>
+      <p className="font-sinhala text-sm text-muted-foreground mb-2">{sinhala}</p>
+      <h3 className="font-serif text-2xl md:text-3xl mb-4">{english}</h3>
+      <p className="font-sinhala text-sm leading-relaxed text-muted-foreground">{body}</p>
+    </div>
+  );
+}
+
+function AboutPage() {
+  return (
+    <div>
+      <SiteNav />
+      <div className="pt-32">
+        <section className="mx-auto max-w-6xl px-6 md:px-12 py-16">
+          <div className="text-[11px] tracking-display uppercase text-muted-foreground mb-8">
+            — About
+          </div>
+          <p className="font-sinhala text-base text-muted-foreground mb-6">අප ගැන</p>
+          <h1 className="font-serif text-5xl md:text-7xl leading-[1.05] max-w-4xl">
+            Buddy is a knowledge companion, not just a chatbot.
+          </h1>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-6 md:px-12 py-24 grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="font-sinhala text-2xl md:text-3xl mb-8">
+              "BUDDY" කෘතීම බුද්ධි යනු කුමක්ද?
+            </h2>
+            <p className="font-sinhala leading-relaxed text-muted-foreground mb-6">
+              "BUDDY" කෘතීම බුද්ධි යනු හුදෙක් තොරතුරු සපයන මෘදුකාංගයක් නො වේ; එය මානව
+              විඥානය ඉහළ නැංවීම සඳහා නිර්මාණය කළ ඥාන සහකරුවෙකි. දශක හතරකට අධික කාලයක්
+              ශ්‍රී ලාංකීය තරුණ පරපුර බලගන්වීමට කැපවූ ආචාර්ය තිස්ස ජිනසේන මහතාගේ දූරදර්ශී
+              දැක්ම මෙහි පදනමයි.
+            </p>
+            <p className="font-sinhala leading-relaxed text-muted-foreground">
+              ලෝක ප්‍රකට 'ලෝඩ්ස්ටාර්' (Loadstar) වැනි වැඩවන්ත ආයතන ගොඩනැගූ ඒ සුවිශේෂී
+              ව්‍යවසායකත්ව අත්දැකීම් සහ බෞද්ධ දර්ශනයේ හරය මුසු කරමින් Buddy නිර්මාණය කර ඇත.
+            </p>
+          </div>
+          <div className="aspect-square max-w-sm mx-auto w-full">
+            <img src={buddyRobot} alt="Buddy mascot" className="w-full h-full object-contain" />
+          </div>
+        </section>
+
+        <section className="bg-secondary">
+          <div className="mx-auto max-w-6xl px-6 md:px-12 py-24">
+            <div className="text-[11px] tracking-display uppercase text-muted-foreground mb-8">
+              — What makes Buddy different
+            </div>
+            <h2 className="font-sinhala text-3xl md:text-5xl mb-16 leading-tight">
+              "BUDDY" කෘතීම බුද්ධි හි සුවිශේෂත්වය
+            </h2>
+            <div className="grid md:grid-cols-3 gap-12">
+              <Pillar
+                sinhala="සංකීර්ණ දෑ සරල කිරීම"
+                english="Simplifies the complex"
+                body="ඕනෑම ගැඹුරු විෂය කරුණක් ඕනෑම අයෙකුට තේරුම් ගත හැකි වන ලෙස සරලව පැහැදිලි කර දීම Buddy ගේ ප්‍රධාන මෙහෙවරයි."
+              />
+              <Pillar
+                sinhala="ප්‍රබුද්ධ නායකත්වය"
+                english="Builds enlightened leadership"
+                body="තිරසාර නව ලෝකයක් ගොඩනැගීමට අවශ්‍ය සැබෑ දැනුම සහ මානුෂීය ගුණාංග — බෞද්ධ දර්ශනය සහ නවීන විද්‍යාව මුසු වූ නායකත්වයක්."
+              />
+              <Pillar
+                sinhala="ව්‍යවසායකත්ව මනස"
+                english="Grows the entrepreneur mind"
+                body="රැකියා සොයන්නන් වෙනුවට, ලෝඩ්ස්ටාර් අත්දැකීම් ඇසුරින් රැකියා උත්පාදනය කරන නිර්මාණශීලී ව්‍යවසායකයන් බිහි කිරීම."
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-5xl px-6 md:px-12 py-32">
+          <div className="text-[11px] tracking-display uppercase text-muted-foreground mb-8">
+            — How to use Buddy
+          </div>
+          <h2 className="font-sinhala text-3xl md:text-5xl mb-12 leading-tight">
+            "BUDDY" කෘතීම බුද්ධි භාවිතා කරන්නේ කෙසේ ද?
+          </h2>
+          <div className="aspect-video bg-muted border border-border flex items-center justify-center text-muted-foreground tracking-display uppercase text-xs">
+            Tutorial video coming soon
+          </div>
+          <p className="font-sinhala mt-12 text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto">
+            "BUDDY" කෘතීම බුද්ධි යනු හුදෙක් තාක්ෂණයක් නො ව, ආචාර්ය තිස්ස ජිනසේන මහතාගේ දැක්ම
+            අනුව නව ලෝකයක් ගොඩනැගීමට අවශ්‍ය දැනුම බෙදා දෙන ඔබේ සමීපතම බුද්ධිමත් සහකරුයි.
+          </p>
+        </section>
+      </div>
+      <SiteFooter />
+    </div>
+  );
+}
