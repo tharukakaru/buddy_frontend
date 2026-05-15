@@ -7,7 +7,6 @@ import {
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { COURSES, SAMPLE_DAY } from "@/lib/courses-data";
-import { useAuth } from "@/hooks/use-auth";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -17,14 +16,8 @@ export const Route = createFileRoute("/courses_/$courseId")({
 
 function CourseDetail() {
   const { courseId } = Route.useParams();
-  const nav = useNavigate();
-  const { user, loading } = useAuth();
   const course = COURSES.find((c) => c.id === courseId);
   const [openDay, setOpenDay] = useState<number | null>(1);
-
-  useEffect(() => {
-    if (!loading && !user) nav({ to: "/login" });
-  }, [user, loading, nav]);
 
   if (!course) {
     return (
