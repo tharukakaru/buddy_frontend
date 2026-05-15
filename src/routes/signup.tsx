@@ -41,27 +41,19 @@ function SignupPage() {
     if (error) { setBusy(false); return toast.error(error.message); }
     const uid = data.user?.id;
     if (uid) {
-      const updates: Record<string, unknown> = {
+      await supabase.from("profiles").update({
         full_name: form.full_name,
         role,
         status: "pending",
-      };
-      if (role === "student") {
-        Object.assign(updates, {
-          age: form.age ? Number(form.age) : null,
-          student_id: form.student_id || null,
-          phone: form.phone || null,
-          hometown: form.hometown || null,
-          qualification: form.qualification || null,
-        });
-      } else {
-        Object.assign(updates, {
-          department: form.department || null,
-          designation: form.designation || null,
-          subjects,
-        });
-      }
-      await supabase.from("profiles").update(updates).eq("id", uid);
+        age: role === "student" && form.age ? Number(form.age) : null,
+        student_id: role === "student" ? form.student_id || null : null,
+        phone: role === "student" ? form.phone || null : null,
+        hometown: role === "student" ? form.hometown || null : null,
+        qualification: role === "student" ? form.qualification || null : null,
+        department: role === "teacher" ? form.department || null : null,
+        designation: role === "teacher" ? form.designation || null : null,
+        subjects: role === "teacher" ? subjects : null,
+      }).eq("id", uid);
     }
     setBusy(false);
     toast.success("Application submitted — pending review", {
