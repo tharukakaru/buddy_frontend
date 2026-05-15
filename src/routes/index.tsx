@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import heroOcean from "@/assets/hero-ocean.jpg";
-import buddyVideo from "@/assets/buddy-robot.mp4";
+import buddyImage from "@/assets/buddy-robot-beige.png";
 import foundationLand from "@/assets/foundation-land.jpg";
 import absolxLogo from "@/assets/absolx-logo.png";
 import { useAuth } from "@/hooks/use-auth";
@@ -42,9 +42,9 @@ function Index() {
           <p className="mt-2 max-w-xl text-xs md:text-sm opacity-65">
             Wisdom is the ability to make the complex simple.
           </p>
-          <div className="mt-10 flex items-center gap-3 opacity-80">
-            <span className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase">Powered by</span>
-            <img src={absolxLogo} alt="AbsolX" className="h-6 md:h-7 w-auto" />
+          <div className="mt-12 flex items-center gap-4 opacity-90">
+            <span className="text-[11px] md:text-xs tracking-[0.3em] uppercase">Powered by</span>
+            <img src={absolxLogo} alt="AbsolX" className="h-12 md:h-16 w-auto" />
           </div>
         </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/70 text-xs tracking-display uppercase animate-bounce">
@@ -73,8 +73,8 @@ function Index() {
       {/* Buddy AI — white avatar bg */}
       <section className="bg-secondary">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-32 grid md:grid-cols-2 gap-16 items-center">
-          <div className="relative aspect-square max-w-md mx-auto w-full rounded-sm overflow-hidden shadow-2xl ring-1 ring-accent/20 bg-white">
-            <video src={buddyVideo} autoPlay loop muted playsInline className="w-full h-full object-contain bg-white mix-blend-multiply" />
+          <div className="relative aspect-square max-w-md mx-auto w-full rounded-sm overflow-hidden shadow-2xl ring-1 ring-accent/20 bg-secondary">
+            <img src={buddyImage} alt="Buddy" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-accent/5 via-transparent to-transparent pointer-events-none" />
           </div>
           <div>

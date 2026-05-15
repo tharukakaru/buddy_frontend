@@ -42,8 +42,8 @@ const pillars = [
     n: "04",
     code: "JTF",
     title: "Jinasena Training Foundation",
-    si: "ග්‍රාමීය තරුණ තරුණියන් සඳහා ජාත්‍යන්තර මට්ටමේ වෘත්තීය අධ්‍යාපනය සහ තාක්ෂණික දැනුම ලබා දෙමින් ඔවුන්ව ලෝක මට්ටමේ වෘත්තිකයන් බවට පත් කරයි.",
-    en: "International-standard vocational education and technical know-how that turns rural youth into world-class professionals.",
+    si: "ආචාර්ය තිස්ස ජිනසේන මහතාගේ අරමුණ වන්නේ නවීන කෘතිම බුද්ධිය (AI) සහ උසස් තාක්ෂණය මානව සේවයක් සඳහා යොදා ගැනීමයි. 'ලෝඩ්ස්ටාර්' (Loadstar) වැනි දැවැන්ත කර්මාන්තශාලා ගොඩනැගීමට ඉදිරිපත් වන තරුණ පරපුරක් බිහි කරමින්, ග්‍රාමීය තරුණයින් ලෝක මට්ටමේ වෘත්තිකයන් බවට පත් කරයි.",
+    en: "AI technology meets an enlightened social mission. Dr. Tissa Jinasena's vision: harness modern AI and advanced technology for human service — building the next generation of entrepreneurs ready to create Loadstar-scale industries from rural Sri Lanka.",
   },
 ];
 

@@ -16,7 +16,7 @@ export type Course = {
 };
 
 const cover = (seed: string) =>
-  `https://images.unsplash.com/photo-${seed}?auto=format&fit=crop&w=800&q=70`;
+  `https://images.unsplash.com/photo-${seed}?auto=format&fit=crop&w=900&q=80`;
 
 export const COURSES: Course[] = [
   {
@@ -30,7 +30,7 @@ export const COURSES: Course[] = [
     days: 12,
     level: "All Levels",
     tag: "Bestseller",
-    image: cover("1635070041078-e363dbe005cb"),
+    image: cover("1509228627152-72ae9ae6848d"),
     longDesc:
       "A 12-day intensive in core mathematics for engineering trades. The platform adapts to your level: Beginner, Intermediate, or Advanced — each daily quiz score recalibrates tomorrow's lesson plan, with Buddy AI standing by when you get stuck.",
     whatYouLearn: [
@@ -41,18 +41,18 @@ export const COURSES: Course[] = [
     ],
     includes: ["8 hours/day for 12 days", "15 MCQ daily quiz", "Adaptive AI tutoring", "Certificate of completion"],
   },
-  { id: "fm", code: "FM", title: "Foundation Mathematics", desc: "Algebra, geometry, applied math.", category: "Foundation / Core Sciences", hours: 96, days: 12, level: "Beginner", image: cover("1509228468518-180dd4864904"), longDesc: "", whatYouLearn: [], includes: [] },
-  { id: "pb", code: "PB", title: "Physics Basics", desc: "Motion, energy, materials.", category: "Foundation / Core Sciences", hours: 96, days: 12, level: "Beginner", image: cover("1636466497217-26a8cbeaf0aa"), longDesc: "", whatYouLearn: [], includes: [] },
-  { id: "cad", code: "CAD", title: "Computer-Aided Design", desc: "2D & 3D design fundamentals.", category: "Foundation / Core Sciences", hours: 96, days: 12, level: "All Levels", tag: "Premium", image: cover("1581091226825-a6a2a5aee158"), longDesc: "", whatYouLearn: [], includes: [] },
-  { id: "en", code: "EN", title: "Technical English", desc: "Workshop & engineering English.", category: "Foundation / Core Sciences", hours: 96, days: 12, level: "All Levels", image: cover("1456513080510-7bf3a84b82f8"), longDesc: "", whatYouLearn: [], includes: [] },
-  { id: "wt", code: "WT", title: "Workshop Technology", desc: "Workshop tools & practice.", category: "Mechanical Engineering & Manufacturing", hours: 96, days: 12, level: "All Levels", image: cover("1581092918056-0c4c3acd3789"), longDesc: "", whatYouLearn: [], includes: [] },
-  { id: "ms", code: "MS", title: "Mechanical Systems", desc: "Machines, gears, bearings.", category: "Mechanical Engineering & Manufacturing", hours: 96, days: 12, level: "All Levels", image: cover("1565043666747-69f6646db940"), longDesc: "", whatYouLearn: [], includes: [] },
-  { id: "hp", code: "HP", title: "Hydraulics & Pneumatics", desc: "Fluid power systems.", category: "Mechanical Engineering & Manufacturing", hours: 96, days: 12, level: "All Levels", tag: "New", image: cover("1581093588401-fbb62a02f120"), longDesc: "", whatYouLearn: [], includes: [] },
-  { id: "cnc", code: "CNC", title: "CNC Machining", desc: "Computer numerical control.", category: "Mechanical Engineering & Manufacturing", hours: 96, days: 12, level: "Advanced", tag: "Premium", image: cover("1565793298595-6a879b1d9492"), longDesc: "", whatYouLearn: [], includes: [] },
-  { id: "eb", code: "EB", title: "Electrical Basics", desc: "Circuits, safety, wiring.", category: "Electrical & Automation", hours: 96, days: 12, level: "Beginner", image: cover("1473341304170-971dccb5ac1e"), longDesc: "", whatYouLearn: [], includes: [] },
-  { id: "plc", code: "PLC", title: "PLC & Automation", desc: "Industrial control systems.", category: "Electrical & Automation", hours: 96, days: 12, level: "Advanced", image: cover("1518770660439-4636190af475"), longDesc: "", whatYouLearn: [], includes: [] },
-  { id: "rb", code: "RB", title: "Intro to Robotics", desc: "Sensors, motors, logic.", category: "Electrical & Automation", hours: 96, days: 12, level: "All Levels", tag: "New", image: cover("1535378620166-273708d44e4c"), longDesc: "", whatYouLearn: [], includes: [] },
-  { id: "ag", code: "AG", title: "Agriculture Basic Syllabus", siTitle: "කෘෂිකර්ම මූලික පාඨමාලාව", desc: "Foundations of agriculture (Sinhala course).", category: "Agriculture & Sustainability", hours: 480, days: 60, level: "Beginner", image: cover("1500382017468-9049fed747ef"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "fm", code: "FM", title: "Foundation Mathematics", desc: "Algebra, geometry, applied math.", category: "Foundation / Core Sciences", hours: 96, days: 12, level: "Beginner", image: cover("1635070041078-e363dbe005cb"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "pb", code: "PB", title: "Physics Basics", desc: "Motion, energy, materials.", category: "Foundation / Core Sciences", hours: 96, days: 12, level: "Beginner", image: cover("1532187863486-abf9dbad1b69"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "cad", code: "CAD", title: "Computer-Aided Design", desc: "2D & 3D design fundamentals.", category: "Foundation / Core Sciences", hours: 96, days: 12, level: "All Levels", tag: "Premium", image: cover("1581092160562-40aa08e78837"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "en", code: "EN", title: "Technical English", desc: "Workshop & engineering English.", category: "Foundation / Core Sciences", hours: 96, days: 12, level: "All Levels", image: cover("1457369804613-52c61a468e7d"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "wt", code: "WT", title: "Workshop Technology", desc: "Workshop tools & practice.", category: "Mechanical Engineering & Manufacturing", hours: 96, days: 12, level: "All Levels", image: cover("1504917595217-d4dc5ebe6122"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "ms", code: "MS", title: "Mechanical Systems", desc: "Machines, gears, bearings.", category: "Mechanical Engineering & Manufacturing", hours: 96, days: 12, level: "All Levels", image: cover("1518770660439-4636190af475"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "hp", code: "HP", title: "Hydraulics & Pneumatics", desc: "Fluid power systems.", category: "Mechanical Engineering & Manufacturing", hours: 96, days: 12, level: "All Levels", tag: "New", image: cover("1565939643937-8c4cd1faaaa8"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "cnc", code: "CNC", title: "CNC Machining", desc: "Computer numerical control.", category: "Mechanical Engineering & Manufacturing", hours: 96, days: 12, level: "Advanced", tag: "Premium", image: cover("1581093588401-fbb62a02f120"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "eb", code: "EB", title: "Electrical Basics", desc: "Circuits, safety, wiring.", category: "Electrical & Automation", hours: 96, days: 12, level: "Beginner", image: cover("1565608087341-404b25492cee"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "plc", code: "PLC", title: "PLC & Automation", desc: "Industrial control systems.", category: "Electrical & Automation", hours: 96, days: 12, level: "Advanced", image: cover("1581094794329-c8112a89af12"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "rb", code: "RB", title: "Intro to Robotics", desc: "Sensors, motors, logic.", category: "Electrical & Automation", hours: 96, days: 12, level: "All Levels", tag: "New", image: cover("1581092335397-9583eb92d232"), longDesc: "", whatYouLearn: [], includes: [] },
+  { id: "ag", code: "AG", title: "Agriculture Basic Syllabus", siTitle: "කෘෂිකර්ම මූලික පාඨමාලාව", desc: "Foundations of agriculture (Sinhala course).", category: "Agriculture & Sustainability", hours: 480, days: 60, level: "Beginner", image: cover("1464226184884-fa280b87c399"), longDesc: "", whatYouLearn: [], includes: [] },
   { id: "of", code: "OF", title: "Organic Farming", desc: "Soil, compost, integrated pest care.", category: "Agriculture & Sustainability", hours: 96, days: 12, level: "All Levels", image: cover("1530836369250-ef72a3f5cda8"), longDesc: "", whatYouLearn: [], includes: [] },
   { id: "si", code: "SI", title: "Smart Irrigation", desc: "Water-efficient growing.", category: "Agriculture & Sustainability", hours: 96, days: 12, level: "All Levels", image: cover("1416879595882-3373a0480b5b"), longDesc: "", whatYouLearn: [], includes: [] },
   { id: "ab", code: "AB", title: "Agri Business", desc: "Markets, finance, value chains.", category: "Agriculture & Sustainability", hours: 96, days: 12, level: "All Levels", image: cover("1542838132-92c53300491e"), longDesc: "", whatYouLearn: [], includes: [] },
