@@ -130,64 +130,6 @@ function ProfilePage() {
   );
 }
 
-      <div className="mx-auto max-w-5xl px-6 md:px-12 py-12 space-y-12">
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {stats.map(s => (
-            <div key={s.label} className="border border-border p-5">
-              <s.icon className="w-4 h-4 text-accent mb-3" />
-              <div className="text-2xl font-serif">{s.value}</div>
-              <div className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mt-1">{s.label}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Personal info */}
-        <div>
-          <h2 className="font-serif text-2xl mb-5">Personal Information</h2>
-          <div className="grid md:grid-cols-2 gap-x-10 gap-y-5 text-sm border border-border p-6">
-            <Info icon={<User />} label="Full Name" value={profile.full_name} />
-            <Info icon={<Mail />} label="Email" value={profile.email} />
-            <Info icon={<GraduationCap />} label="Student ID" value={(profile as any).student_id} />
-            <Info icon={<Phone />} label="Phone" value={(profile as any).phone} />
-            <Info icon={<MapPin />} label="Home Town" value={(profile as any).hometown} />
-            <Info icon={<Award />} label="Qualification" value={(profile as any).qualification} />
-          </div>
-        </div>
-
-        {/* Course progress */}
-        <div>
-          <h2 className="font-serif text-2xl mb-5">My Courses</h2>
-          <div className="border border-border divide-y divide-border">
-            {courses.map(c => (
-              <div key={c.name} className="p-5 flex flex-col md:flex-row md:items-center gap-4">
-                <div className="flex-1">
-                  <div className="font-serif text-lg">{c.name}</div>
-                  <div className="text-[12px] text-muted-foreground mt-0.5">{c.days} days</div>
-                </div>
-                <div className="flex-1 max-w-xs">
-                  <div className="h-2 bg-secondary"><div className="h-full bg-accent" style={{ width: `${c.pct}%` }} /></div>
-                  <div className="text-[11px] text-muted-foreground mt-1">{c.pct}% complete</div>
-                </div>
-                <span className={`text-[10px] tracking-[0.25em] uppercase px-3 py-1.5 ${
-                  c.status === "On Track" ? "bg-accent/15 text-accent" :
-                  c.status === "Monitor" ? "bg-yellow-500/15 text-yellow-700" :
-                  "bg-orange-500/15 text-orange-700"
-                }`}>{c.status}</span>
-                <Link to="/courses" className="text-[11px] tracking-[0.25em] uppercase border-b border-foreground hover:text-accent hover:border-accent">
-                  Open →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <SiteFooter />
-    </div>
-  );
-}
-
 function Info({ icon, label, value }: { icon: React.ReactNode; label: string; value: string | null | undefined }) {
   return (
     <div className="flex gap-3">
