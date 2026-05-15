@@ -3,7 +3,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import heroOcean from "@/assets/hero-ocean.jpg";
 import buddyVideo from "@/assets/buddy-robot.mp4";
-import foundationMountain from "@/assets/foundation-mountain.png";
+import foundationLand from "@/assets/foundation-land.jpg";
 import absolxLogo from "@/assets/absolx-logo.png";
 import { useAuth } from "@/hooks/use-auth";
 
@@ -44,7 +44,7 @@ function Index() {
           </p>
           <div className="mt-10 flex items-center gap-3 opacity-80">
             <span className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase">Powered by</span>
-            <img src={absolxLogo} alt="AbsolX" className="h-4 md:h-5 w-auto invert" />
+            <img src={absolxLogo} alt="AbsolX" className="h-6 md:h-7 w-auto" />
           </div>
         </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/70 text-xs tracking-display uppercase animate-bounce">
@@ -95,7 +95,7 @@ function Index() {
 
       {/* Foundation — mountain */}
       <section className="relative h-[80vh] overflow-hidden">
-        <img src={foundationMountain} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+        <img src={foundationLand} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60" />
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-white text-center px-6">
           <div className="text-[11px] tracking-display uppercase opacity-80 mb-6">— The Foundation Network</div>
