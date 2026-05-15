@@ -70,7 +70,7 @@ function SignupPage() {
     setSubjects((cur) => cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]);
 
   return (
-    <div className="min-h-screen bg-background grid md:grid-cols-[1fr_1.15fr]">
+    <div className="h-screen w-screen overflow-hidden bg-background grid md:grid-cols-[1fr_1.15fr]">
       <Toaster />
 
       {/* LEFT — sticky brand panel */}
@@ -100,8 +100,8 @@ function SignupPage() {
         </div>
       </div>
 
-      {/* RIGHT — form */}
-      <div className="flex items-start justify-center p-6 md:p-12 lg:p-16">
+      {/* RIGHT — form (internal scroll to keep page fit-to-screen) */}
+      <div className="h-screen overflow-y-auto flex items-start justify-center p-6 md:p-10 lg:p-14">
         <form onSubmit={submit} className="w-full max-w-md space-y-8 py-8">
           <div>
             <div className="text-[10px] tracking-[0.35em] uppercase text-accent mb-3">— Create account</div>
