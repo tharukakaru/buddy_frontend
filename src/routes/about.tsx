@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import buddyRobot from "@/assets/buddy-robot.png";
+import buddyVideo from "@/assets/buddy-robot.mp4";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
