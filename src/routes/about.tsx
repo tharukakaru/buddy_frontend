@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import buddyVideo from "@/assets/buddy-robot.mp4";
+import buddyVideo from "@/assets/robot-white.mp4";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -60,7 +60,7 @@ function AboutPage() {
               ව්‍යවසායකත්ව අත්දැකීම් සහ බෞද්ධ දර්ශනයේ හරය මුසු කරමින් Buddy නිර්මාණය කර ඇත.
             </p>
           </div>
-          <div className="aspect-square max-w-sm mx-auto w-full rounded-sm overflow-hidden shadow-2xl ring-1 ring-accent/20 relative">
+          <div className="aspect-square max-w-sm mx-auto w-full rounded-sm overflow-hidden shadow-2xl ring-1 ring-accent/20 relative bg-white">
             <video
               src={buddyVideo}
               autoPlay
@@ -69,7 +69,6 @@ function AboutPage() {
               playsInline
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-accent/10 via-transparent to-transparent pointer-events-none" />
           </div>
         </section>
 

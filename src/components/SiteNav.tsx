@@ -1,9 +1,14 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useAuth } from "@/hooks/use-auth";
 
 const linkCls =
   "text-[11px] tracking-display uppercase hover:text-accent transition-colors";
 
 export function SiteNav() {
+  const nav = useNavigate();
+  const { user } = useAuth();
+  const goCourses = () => nav({ to: user ? "/courses" : "/login" });
+
   return (
     <header className="absolute top-0 left-0 right-0 z-50">
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-6 flex items-center justify-between">
@@ -18,7 +23,7 @@ export function SiteNav() {
           Tissa Jinasena Group
         </Link>
         <nav className="flex items-center gap-8 justify-end">
-          <Link to="/courses" className={linkCls}>Courses</Link>
+          <button onClick={goCourses} className={linkCls}>Courses</button>
         </nav>
       </div>
     </header>
