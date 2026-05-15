@@ -15,7 +15,7 @@ function LoginPage() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Auth bypass — wire real auth later
+    if (typeof window !== "undefined") sessionStorage.setItem("buddy_fake_auth", "1");
     nav({ to: "/courses" });
   };
 
