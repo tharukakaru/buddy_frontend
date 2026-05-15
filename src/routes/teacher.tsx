@@ -2,10 +2,9 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { useAuth } from "@/hooks/use-auth";
 import {
   Users, BookOpen, TrendingUp, AlertTriangle, Search, Filter, ChevronRight,
-  CheckCircle2, Clock, Activity,
+  CheckCircle2, Activity,
 } from "lucide-react";
 
 export const Route = createFileRoute("/teacher")({
@@ -37,14 +36,25 @@ const SUBJECTS = [
 
 function TeacherDashboard() {
   const nav = useNavigate();
-  const { user, profile, loading } = useAuth();
+  const [teacher, setTeacher] = useState<{ name: string; email: string } | null>(null);
   const [tab, setTab] = useState<"overview" | "students" | "subjects">("overview");
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState<"all" | Status>("all");
 
   useEffect(() => {
-    if (!loading && !user) nav({ to: "/login" });
-  }, [user, loading, nav]);
+    const auth = sessionStorage.getItem("buddy_fake_auth") === "1";
+    const role = sessionStorage.getItem("buddy_role");
+    const email = sessionStorage.getItem("buddy_email") || "teacher@buddy.lk";
+    if (!auth || role !== "teacher") {
+      nav({ to: "/login" });
+      return;
+    }
+    setTeacher({ email, name: email.split("@")[0].replace(/\./g, " ") });
+  }, [nav]);
+
+  if (!teacher) {
+    return <div className="min-h-screen flex items-center justify-center text-sm">Loading…</div>;
+  }
 
   const filtered = STUDENTS.filter(s =>
     (filter === "all" || s.status === filter) &&
@@ -65,9 +75,9 @@ function TeacherDashboard() {
       <section className="bg-foreground text-background pt-32 pb-10">
         <div className="mx-auto max-w-7xl px-6 md:px-12">
           <div className="text-[10px] tracking-[0.4em] uppercase text-accent mb-2">— Teacher Dashboard</div>
-          <h1 className="font-serif text-4xl md:text-5xl">Welcome, {profile?.full_name?.split(" ")[0] || "Teacher"}.</h1>
+          <h1 className="font-serif text-4xl md:text-5xl capitalize">Welcome, {teacher.name.split(" ")[0]}.</h1>
           <p className="text-background/70 mt-2 text-sm">
-            {(profile as any)?.department || "Engineering Department"} · {(profile as any)?.designation || "Senior Lecturer"}
+            Engineering Department · Senior Lecturer
           </p>
         </div>
       </section>

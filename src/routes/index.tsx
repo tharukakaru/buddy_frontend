@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import heroOcean from "@/assets/hero-ocean.jpg";
+import heroOcean from "@/assets/hero-bg.jpg";
 import buddyVideo from "@/assets/robot-white.mp4";
 import foundationLand from "@/assets/foundation-land.jpg";
 import absolxLogo from "@/assets/absolx-logo.png";
@@ -25,12 +25,12 @@ function Index() {
 
   return (
     <div>
-      <SiteNav />
+      <SiteNav variant="light" />
 
       {/* Hero */}
       <section className="relative h-screen w-full overflow-hidden">
         <img src={heroOcean} alt="" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70" />
         <div className="relative z-10 flex h-full flex-col items-center justify-end text-white px-6 text-center pb-[8vh] md:pb-[10vh]">
           <div className="text-[10px] md:text-xs tracking-display uppercase opacity-80 mb-5">
             Jinasena Padanama presents
