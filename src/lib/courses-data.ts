@@ -16,7 +16,7 @@ export type Course = {
 };
 
 const cover = (seed: string) =>
-  `https://images.unsplash.com/photo-${seed}?auto=format&fit=crop&w=800&q=70`;
+  `https://images.unsplash.com/photo-${seed}?auto=format&fit=crop&w=900&q=80`;
 
 export const COURSES: Course[] = [
   {
