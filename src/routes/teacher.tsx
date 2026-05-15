@@ -67,7 +67,7 @@ function TeacherDashboard() {
           <div className="text-[10px] tracking-[0.4em] uppercase text-accent mb-2">— Teacher Dashboard</div>
           <h1 className="font-serif text-4xl md:text-5xl">Welcome, {profile?.full_name?.split(" ")[0] || "Teacher"}.</h1>
           <p className="text-background/70 mt-2 text-sm">
-            {profile?.department || "Engineering Department"} · {(profile as any)?.designation || "Senior Lecturer"}
+            {(profile as any)?.department || "Engineering Department"} · {(profile as any)?.designation || "Senior Lecturer"}
           </p>
         </div>
       </section>
