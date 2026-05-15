@@ -35,15 +35,15 @@ function Index() {
           <div className="text-[10px] md:text-xs tracking-display uppercase opacity-80 mb-5">
             Jinasena Padanama presents
           </div>
-          <h1 className="font-serif text-[18vw] md:text-[13vw] leading-[0.85] tracking-tight">BUDDY</h1>
-          <p className="mt-6 max-w-xl text-sm md:text-base opacity-85 font-sinhala leading-relaxed">
+          <h1 className="font-serif text-[15vw] md:text-[10vw] leading-[0.85] tracking-tight">BUDDY</h1>
+          <p className="mt-6 max-w-xl text-xs md:text-sm opacity-85 font-sinhala leading-relaxed">
             බුද්ධිය යනු සංකීර්ණ දෑ සරල කිරීමේ හැකියාවයි.
           </p>
-          <p className="mt-2 max-w-xl text-xs md:text-sm opacity-65">
+          <p className="mt-2 max-w-xl text-[10px] md:text-xs opacity-65">
             Wisdom is the ability to make the complex simple.
           </p>
           <div className="mt-6 flex flex-col items-center opacity-95">
-            <span className="text-[11px] md:text-xs tracking-[0.3em] uppercase opacity-75">Powered by</span>
+            <span className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase opacity-75">Powered by</span>
             <img src={absolxLogo} alt="AbsolX" className="h-16 md:h-20 w-auto drop-shadow-2xl -mt-3" />
           </div>
         </div>
