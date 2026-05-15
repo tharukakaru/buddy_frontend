@@ -11,7 +11,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 
-export const Route = createFileRoute("/courses/$courseId")({
+export const Route = createFileRoute("/courses_/$courseId")({
   component: CourseDetail,
 });
 

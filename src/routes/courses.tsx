@@ -85,13 +85,11 @@ function CoursesPage() {
 }
 
 function CourseCard({ course }: { course: Course }) {
-  const { user } = useAuth();
   const nav = useNavigate();
   const [hover, setHover] = useState(false);
 
   const open = () => {
-    if (!user) nav({ to: "/login" });
-    else nav({ to: "/courses/$courseId", params: { courseId: course.id } });
+    nav({ to: "/courses/$courseId", params: { courseId: course.id } });
   };
 
   return (

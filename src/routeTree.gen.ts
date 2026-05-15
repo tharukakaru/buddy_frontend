@@ -20,7 +20,7 @@ import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CoursesCourseIdRouteImport } from './routes/courses.$courseId'
+import { Route as CoursesCourseIdRouteImport } from './routes/courses_.$courseId'
 
 const TeacherRoute = TeacherRouteImport.update({
   id: '/teacher',
@@ -78,16 +78,16 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const CoursesCourseIdRoute = CoursesCourseIdRouteImport.update({
-  id: '/$courseId',
-  path: '/$courseId',
-  getParentRoute: () => CoursesRoute,
+  id: '/courses_/$courseId',
+  path: '/courses/$courseId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/courses': typeof CoursesRouteWithChildren
+  '/courses': typeof CoursesRoute
   '/foundation': typeof FoundationRoute
   '/jtf': typeof JtfRoute
   '/login': typeof LoginRoute
@@ -101,7 +101,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/courses': typeof CoursesRouteWithChildren
+  '/courses': typeof CoursesRoute
   '/foundation': typeof FoundationRoute
   '/jtf': typeof JtfRoute
   '/login': typeof LoginRoute
@@ -116,7 +116,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/courses': typeof CoursesRouteWithChildren
+  '/courses': typeof CoursesRoute
   '/foundation': typeof FoundationRoute
   '/jtf': typeof JtfRoute
   '/login': typeof LoginRoute
@@ -124,7 +124,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/teacher': typeof TeacherRoute
-  '/courses/$courseId': typeof CoursesCourseIdRoute
+  '/courses_/$courseId': typeof CoursesCourseIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -168,14 +168,14 @@ export interface FileRouteTypes {
     | '/profile'
     | '/signup'
     | '/teacher'
-    | '/courses/$courseId'
+    | '/courses_/$courseId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  CoursesRoute: typeof CoursesRouteWithChildren
+  CoursesRoute: typeof CoursesRoute
   FoundationRoute: typeof FoundationRoute
   JtfRoute: typeof JtfRoute
   LoginRoute: typeof LoginRoute
@@ -183,6 +183,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignupRoute: typeof SignupRoute
   TeacherRoute: typeof TeacherRoute
+  CoursesCourseIdRoute: typeof CoursesCourseIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -264,32 +265,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/courses/$courseId': {
-      id: '/courses/$courseId'
-      path: '/$courseId'
+    '/courses_/$courseId': {
+      id: '/courses_/$courseId'
+      path: '/courses/$courseId'
       fullPath: '/courses/$courseId'
       preLoaderRoute: typeof CoursesCourseIdRouteImport
-      parentRoute: typeof CoursesRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface CoursesRouteChildren {
-  CoursesCourseIdRoute: typeof CoursesCourseIdRoute
-}
-
-const CoursesRouteChildren: CoursesRouteChildren = {
-  CoursesCourseIdRoute: CoursesCourseIdRoute,
-}
-
-const CoursesRouteWithChildren =
-  CoursesRoute._addFileChildren(CoursesRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  CoursesRoute: CoursesRouteWithChildren,
+  CoursesRoute: CoursesRoute,
   FoundationRoute: FoundationRoute,
   JtfRoute: JtfRoute,
   LoginRoute: LoginRoute,
@@ -297,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignupRoute: SignupRoute,
   TeacherRoute: TeacherRoute,
+  CoursesCourseIdRoute: CoursesCourseIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
