@@ -1,5 +1,5 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Star, Clock, Users, Globe, CheckCircle2, ChevronDown, Award, Play,
   BookOpen, Lock, Smartphone, Infinity as InfinityIcon, FileText, Share2, Heart,
