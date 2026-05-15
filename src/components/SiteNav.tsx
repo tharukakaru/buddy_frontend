@@ -18,7 +18,7 @@ export function SiteNav() {
         </nav>
         <Link
           to="/"
-          className="font-serif text-base md:text-lg tracking-[0.4em] uppercase whitespace-nowrap"
+          className="font-serif text-[13px] md:text-[15px] tracking-[0.35em] uppercase whitespace-nowrap"
         >
           Tissa Jinasena Group
         </Link>

@@ -4,8 +4,6 @@ import { toast } from "sonner";
 import { GraduationCap, Briefcase } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Toaster } from "@/components/ui/sonner";
-import heroOcean from "@/assets/hero-ocean.jpg";
-import absolxLogo from "@/assets/absolx-logo.png";
 
 export const Route = createFileRoute("/signup")({
   component: SignupPage,
@@ -70,85 +68,78 @@ function SignupPage() {
     setSubjects((cur) => cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]);
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-background grid md:grid-cols-[1fr_1.15fr]">
+    <div className="min-h-screen w-screen bg-[#0d0c0a] text-white relative overflow-x-hidden">
       <Toaster />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(217,168,90,0.16),transparent_55%),radial-gradient(circle_at_85%_85%,rgba(120,140,180,0.12),transparent_55%)] pointer-events-none" />
 
-      {/* LEFT — sticky brand panel */}
-      <div className="relative hidden md:flex flex-col justify-between p-10 lg:p-14 text-white sticky top-0 h-screen overflow-hidden">
-        <img src={heroOcean} alt="" className="absolute inset-0 h-full w-full object-cover scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/60 to-black/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(217,168,90,0.22),transparent_55%)]" />
-
-        <Link to="/" className="relative font-serif tracking-[0.4em] uppercase text-[11px]">
-          Tissa Jinasena Group
+      <div className="relative z-10 px-6 md:px-12 py-6 flex items-center justify-between text-[11px] tracking-[0.35em] uppercase">
+        <Link to="/" className="font-serif text-white/85 hover:text-accent transition-colors">
+          ← Tissa Jinasena Group
         </Link>
+        <Link to="/login" className="text-white/60 hover:text-accent">Sign in</Link>
+      </div>
 
-        <div className="relative max-w-md">
-          <div className="text-[10px] tracking-[0.4em] uppercase text-white/50 mb-5">— Join Buddy</div>
-          <h1 className="font-serif text-5xl lg:text-6xl leading-[0.95]">
-            Begin your <em className="text-accent">journey</em>.
+      <div className="relative z-10 mx-auto w-[min(560px,92vw)] py-6 md:py-10">
+        <div className="text-center mb-7">
+          <div className="inline-flex items-center gap-2 text-[10px] tracking-[0.5em] uppercase text-accent mb-4">
+            <span className="h-px w-8 bg-accent" /> Join Buddy <span className="h-px w-8 bg-accent" />
+          </div>
+          <h1 className="font-serif text-4xl md:text-5xl leading-[0.95]">
+            Begin your <em className="text-accent not-italic">journey</em>.
           </h1>
-          <div className="mt-8 h-px w-12 bg-accent" />
-          <p className="mt-6 text-white/65 text-[13px] leading-relaxed max-w-sm">
-            Every account is reviewed before activation — to keep Buddy a thoughtful, mentored space.
+          <p className="mt-3 text-[12px] text-white/55">
+            Every account is reviewed before activation.
           </p>
         </div>
 
-        <div className="relative flex items-center gap-3 text-white/55">
-          <span className="text-[10px] tracking-[0.3em] uppercase">Powered by</span>
-          <img src={absolxLogo} alt="AbsolX" className="h-6 w-auto opacity-90" />
-        </div>
-      </div>
+        <form onSubmit={submit}
+          className="relative bg-white/[0.04] backdrop-blur-xl border border-white/10 p-7 md:p-9 space-y-7 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)]">
+          <span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-accent/60" />
+          <span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-accent/60" />
+          <span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-accent/60" />
+          <span className="absolute bottom-0 right-0 h-3 w-3 border-b border-r border-accent/60" />
 
-      {/* RIGHT — form (internal scroll to keep page fit-to-screen) */}
-      <div className="h-screen overflow-y-auto flex items-start justify-center p-6 md:p-10 lg:p-14">
-        <form onSubmit={submit} className="w-full max-w-md space-y-8 py-8">
-          <div>
-            <div className="text-[10px] tracking-[0.35em] uppercase text-accent mb-3">— Create account</div>
-            <h2 className="font-serif text-3xl md:text-4xl leading-tight">Tell us about you</h2>
-            <p className="text-[13px] text-muted-foreground mt-3">
-              Choose a role, fill in your details, and we'll review your application.
-            </p>
-          </div>
-
-          {/* Role toggle — premium card style */}
-          <div className="grid grid-cols-2 gap-3 p-1.5 bg-secondary rounded-sm">
+          <div className="grid grid-cols-2 gap-2 p-1 bg-white/5 border border-white/10">
             <RoleCard active={role === "student"} onClick={() => setRole("student")}
-              icon={<GraduationCap className="w-4 h-4" />} label="Student" />
+              icon={<GraduationCap className="w-3.5 h-3.5" />} label="Student" />
             <RoleCard active={role === "teacher"} onClick={() => setRole("teacher")}
-              icon={<Briefcase className="w-4 h-4" />} label="Teacher" />
+              icon={<Briefcase className="w-3.5 h-3.5" />} label="Teacher" />
           </div>
 
-          {/* Common */}
           <div className="space-y-5">
             <F label="Full Name *"><I value={form.full_name || ""} onChange={(v) => set("full_name", v)} placeholder="e.g. Tharuka Perera" /></F>
-            <F label="Email *"><I type="email" value={form.email || ""} onChange={(v) => set("email", v)} placeholder="you@example.com" /></F>
-            <F label="Password *"><I type="password" value={form.password || ""} onChange={(v) => set("password", v)} placeholder="••••••••" /></F>
+            <div className="grid grid-cols-2 gap-4">
+              <F label="Email *"><I type="email" value={form.email || ""} onChange={(v) => set("email", v)} placeholder="you@example.com" /></F>
+              <F label="Password *"><I type="password" value={form.password || ""} onChange={(v) => set("password", v)} placeholder="••••••••" /></F>
+            </div>
           </div>
 
           {role === "student" ? (
-            <div className="space-y-5 pt-2 border-t border-border">
-              <div className="text-[10px] tracking-[0.35em] uppercase text-muted-foreground pt-4">— Student details</div>
+            <div className="space-y-5 pt-5 border-t border-white/10">
+              <div className="text-[9px] tracking-[0.4em] uppercase text-accent/80">— Student details</div>
               <div className="grid grid-cols-2 gap-4">
                 <F label="Age"><I type="number" value={form.age || ""} onChange={(v) => set("age", v)} /></F>
                 <F label="Student ID"><I value={form.student_id || ""} onChange={(v) => set("student_id", v)} /></F>
               </div>
-              <F label="Phone"><I value={form.phone || ""} onChange={(v) => set("phone", v)} /></F>
-              <F label="Home Town"><I value={form.hometown || ""} onChange={(v) => set("hometown", v)} /></F>
+              <div className="grid grid-cols-2 gap-4">
+                <F label="Phone"><I value={form.phone || ""} onChange={(v) => set("phone", v)} /></F>
+                <F label="Home Town"><I value={form.hometown || ""} onChange={(v) => set("hometown", v)} /></F>
+              </div>
               <F label="Highest Educational Qualification"><I value={form.qualification || ""} onChange={(v) => set("qualification", v)} /></F>
-              <F label="Photo URL (optional)"><I value={form.photo_url || ""} onChange={(v) => set("photo_url", v)} /></F>
             </div>
           ) : (
-            <div className="space-y-5 pt-2 border-t border-border">
-              <div className="text-[10px] tracking-[0.35em] uppercase text-muted-foreground pt-4">— Teacher details</div>
-              <F label="Department"><I value={form.department || ""} onChange={(v) => set("department", v)} /></F>
-              <F label="Designation"><I value={form.designation || ""} onChange={(v) => set("designation", v)} /></F>
+            <div className="space-y-5 pt-5 border-t border-white/10">
+              <div className="text-[9px] tracking-[0.4em] uppercase text-accent/80">— Teacher details</div>
+              <div className="grid grid-cols-2 gap-4">
+                <F label="Department"><I value={form.department || ""} onChange={(v) => set("department", v)} /></F>
+                <F label="Designation"><I value={form.designation || ""} onChange={(v) => set("designation", v)} /></F>
+              </div>
               <div>
-                <div className="text-[10px] tracking-[0.35em] uppercase text-muted-foreground mb-3">Subjects</div>
+                <div className="text-[9px] tracking-[0.4em] uppercase text-white/45 mb-3">Subjects</div>
                 <div className="flex flex-wrap gap-2">
                   {SUBJECTS.map((s) => (
                     <button type="button" key={s} onClick={() => toggleSubject(s)}
-                      className={`text-[11px] px-3 py-1.5 border rounded-sm transition-all ${subjects.includes(s) ? "bg-foreground text-background border-foreground" : "border-border hover:border-foreground"}`}>
+                      className={`text-[10px] px-3 py-1.5 border transition-all ${subjects.includes(s) ? "bg-accent text-foreground border-accent" : "border-white/15 text-white/70 hover:border-accent hover:text-white"}`}>
                       {s}
                     </button>
                   ))}
@@ -158,15 +149,10 @@ function SignupPage() {
           )}
 
           <button disabled={busy}
-            className="group relative w-full bg-foreground text-background py-3.5 text-[11px] tracking-[0.35em] uppercase overflow-hidden transition-all hover:shadow-[0_15px_40px_-15px] hover:shadow-accent/60 disabled:opacity-50">
-            <span className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            className="group relative w-full bg-accent text-foreground py-3.5 text-[11px] tracking-[0.4em] uppercase overflow-hidden transition-all hover:shadow-[0_15px_40px_-10px_rgba(217,168,90,0.6)] disabled:opacity-50">
+            <span className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
             <span className="relative">{busy ? "Submitting…" : "Submit for Review"}</span>
           </button>
-
-          <p className="text-[12px] text-muted-foreground text-center">
-            Already have an account?{" "}
-            <Link to="/login" className="border-b border-foreground hover:text-accent hover:border-accent">Sign in</Link>
-          </p>
         </form>
       </div>
     </div>
@@ -176,8 +162,8 @@ function SignupPage() {
 function RoleCard({ active, onClick, icon, label }: { active: boolean; onClick: () => void; icon: React.ReactNode; label: string }) {
   return (
     <button type="button" onClick={onClick}
-      className={`relative flex items-center justify-center gap-2 py-3 text-[11px] tracking-[0.3em] uppercase rounded-sm transition-all ${
-        active ? "bg-background text-foreground shadow-sm ring-1 ring-foreground/10" : "text-muted-foreground hover:text-foreground"
+      className={`relative flex items-center justify-center gap-2 py-2.5 text-[10px] tracking-[0.35em] uppercase transition-all ${
+        active ? "bg-accent text-foreground" : "text-white/55 hover:text-white"
       }`}>
       {icon}
       {label}
@@ -187,16 +173,19 @@ function RoleCard({ active, onClick, icon, label }: { active: boolean; onClick: 
 
 function F({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <label className="block">
-      <span className="text-[9px] tracking-[0.35em] uppercase text-muted-foreground">{label}</span>
-      {children}
+    <label className="block group">
+      <span className="text-[9px] tracking-[0.4em] uppercase text-white/45">{label}</span>
+      <div className="border-b border-white/15 group-focus-within:border-accent transition-colors">
+        {children}
+      </div>
     </label>
   );
 }
+
 function I(props: { value: string; onChange: (v: string) => void; type?: string; placeholder?: string }) {
   return (
     <input type={props.type || "text"} value={props.value} onChange={(e) => props.onChange(e.target.value)}
       placeholder={props.placeholder}
-      className="w-full bg-transparent border-b border-border py-2.5 text-sm focus:outline-none focus:border-accent transition-colors placeholder:text-muted-foreground/40" />
+      className="w-full bg-transparent border-0 py-2 text-[14px] text-white focus:outline-none placeholder:text-white/25" />
   );
 }

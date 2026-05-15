@@ -31,20 +31,20 @@ function Index() {
       <section className="relative h-screen w-full overflow-hidden">
         <img src={heroOcean} alt="" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-white px-6 text-center">
-          <div className="text-[10px] md:text-xs tracking-display uppercase opacity-80 mb-6">
+        <div className="relative z-10 flex h-full flex-col items-center justify-end text-white px-6 text-center pb-[8vh] md:pb-[10vh]">
+          <div className="text-[10px] md:text-xs tracking-display uppercase opacity-80 mb-5">
             Jinasena Padanama presents
           </div>
-          <h1 className="font-serif text-[18vw] md:text-[14vw] leading-[0.85] tracking-tight">BUDDY</h1>
-          <p className="mt-8 max-w-xl text-sm md:text-base opacity-85 font-sinhala leading-relaxed">
+          <h1 className="font-serif text-[18vw] md:text-[13vw] leading-[0.85] tracking-tight">BUDDY</h1>
+          <p className="mt-6 max-w-xl text-sm md:text-base opacity-85 font-sinhala leading-relaxed">
             බුද්ධිය යනු සංකීර්ණ දෑ සරල කිරීමේ හැකියාවයි.
           </p>
           <p className="mt-2 max-w-xl text-xs md:text-sm opacity-65">
             Wisdom is the ability to make the complex simple.
           </p>
-          <div className="mt-8 flex flex-col items-center gap-1 opacity-95">
+          <div className="mt-6 flex flex-col items-center opacity-95">
             <span className="text-[11px] md:text-xs tracking-[0.3em] uppercase opacity-75">Powered by</span>
-            <img src={absolxLogo} alt="AbsolX" className="h-20 md:h-28 w-auto drop-shadow-2xl -mt-1" />
+            <img src={absolxLogo} alt="AbsolX" className="h-16 md:h-20 w-auto drop-shadow-2xl -mt-3" />
           </div>
         </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/70 text-xs tracking-display uppercase animate-bounce">

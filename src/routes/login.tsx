@@ -1,17 +1,14 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mail, Lock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Toaster } from "@/components/ui/sonner";
-import heroOcean from "@/assets/hero-ocean.jpg";
 import absolxLogo from "@/assets/absolx-logo.png";
 
 export const Route = createFileRoute("/login")({
   component: LoginPage,
-  head: () => ({
-    meta: [{ title: "Sign in — BUDDY" }, { name: "description", content: "Sign in to access Buddy courses." }],
-  }),
+  head: () => ({ meta: [{ title: "Sign in — BUDDY" }] }),
 });
 
 function LoginPage() {
@@ -35,94 +32,86 @@ function LoginPage() {
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-background grid md:grid-cols-2">
+    <div className="h-screen w-screen overflow-hidden relative bg-[#0d0c0a] text-white flex items-center justify-center">
       <Toaster />
 
-      {/* LEFT — editorial image panel */}
-      <div className="relative hidden md:block overflow-hidden">
-        <img src={heroOcean} alt="" className="absolute inset-0 h-full w-full object-cover scale-110" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/85" />
+      {/* Ambient backdrop */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(217,168,90,0.18),transparent_50%),radial-gradient(circle_at_80%_85%,rgba(120,140,180,0.15),transparent_55%)]" />
+      <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(rgba(255,255,255,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.5)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
-        <div className="relative z-10 h-full flex flex-col justify-between p-12 lg:p-16 text-white">
-          <Link to="/" className="font-serif tracking-[0.4em] uppercase text-[11px] hover:text-accent transition-colors">
-            Tissa Jinasena Group
-          </Link>
-
-          <div>
-            <div className="text-[10px] tracking-[0.4em] uppercase text-accent mb-6">— A knowledge companion</div>
-            <h1 className="font-serif text-5xl lg:text-7xl leading-[0.92] max-w-md">
-              Wisdom <em className="text-accent not-italic font-light">begins</em><br />
-              with one step.
-            </h1>
-            <div className="mt-10 h-px w-16 bg-accent" />
-            <p className="mt-6 font-sinhala text-white/80 text-[14px] leading-[1.9] max-w-sm">
-              බුද්ධිය යනු සංකීර්ණ දෑ සරල කිරීමේ හැකියාවයි.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-3 text-white/60">
-            <span className="text-[10px] tracking-[0.3em] uppercase">Powered by</span>
-            <img src={absolxLogo} alt="AbsolX" className="h-7 w-auto opacity-90" />
-          </div>
-        </div>
+      {/* Top brand bar */}
+      <div className="absolute top-0 inset-x-0 px-6 md:px-12 py-6 flex items-center justify-between text-[11px] tracking-[0.35em] uppercase z-20">
+        <Link to="/" className="font-serif text-white/85 hover:text-accent transition-colors">
+          ← Tissa Jinasena Group
+        </Link>
+        <Link to="/signup" className="text-white/60 hover:text-accent">
+          Create account
+        </Link>
       </div>
 
-      {/* RIGHT — minimal form, perfectly centered */}
-      <div className="relative flex flex-col justify-center px-6 md:px-16 lg:px-24 py-10">
-        <Link to="/" className="md:hidden absolute top-6 left-6 font-serif tracking-[0.3em] uppercase text-[11px]">
-          Tissa Jinasena Group
-        </Link>
-
-        <div className="absolute top-8 right-8 text-[11px] tracking-[0.25em] uppercase text-muted-foreground">
-          New here?{" "}
-          <Link to="/signup" className="text-foreground hover:text-accent border-b border-foreground/40 hover:border-accent ml-2">
-            Create account
-          </Link>
+      {/* Card */}
+      <div className="relative z-10 w-[min(420px,92vw)] mx-auto">
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 text-[10px] tracking-[0.5em] uppercase text-accent mb-5">
+            <span className="h-px w-8 bg-accent" /> Sign in <span className="h-px w-8 bg-accent" />
+          </div>
+          <h1 className="font-serif text-4xl md:text-5xl leading-[0.95]">
+            Welcome <em className="text-accent not-italic">back</em>.
+          </h1>
+          <p className="mt-3 text-[12px] text-white/55">
+            Continue your journey with Buddy.
+          </p>
         </div>
 
-        <form onSubmit={submit} className="w-full max-w-sm mx-auto space-y-9">
-          <div>
-            <div className="text-[10px] tracking-[0.4em] uppercase text-accent mb-4">— Sign in</div>
-            <h2 className="font-serif text-4xl leading-[1.05]">Welcome back.</h2>
-            <p className="text-[13px] text-muted-foreground mt-3">
-              Continue learning with Buddy.
-            </p>
-          </div>
+        <form onSubmit={submit}
+          className="relative bg-white/[0.04] backdrop-blur-xl border border-white/10 p-7 md:p-9 space-y-5 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)]">
+          {/* Subtle corner accents */}
+          <span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-accent/60" />
+          <span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-accent/60" />
+          <span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-accent/60" />
+          <span className="absolute bottom-0 right-0 h-3 w-3 border-b border-r border-accent/60" />
 
-          <div className="space-y-7">
-            <Field label="Email">
-              <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                className="w-full bg-transparent border-0 border-b border-border py-3 text-[15px] focus:outline-none focus:border-accent transition-colors placeholder:text-muted-foreground/35" />
-            </Field>
-            <Field label="Password">
-              <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full bg-transparent border-0 border-b border-border py-3 text-[15px] focus:outline-none focus:border-accent transition-colors placeholder:text-muted-foreground/35" />
-            </Field>
-          </div>
+          <Field icon={<Mail className="w-3.5 h-3.5" />} label="Email">
+            <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              className="w-full bg-transparent border-0 py-2 text-[15px] text-white focus:outline-none placeholder:text-white/25" />
+          </Field>
+          <Field icon={<Lock className="w-3.5 h-3.5" />} label="Password">
+            <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              className="w-full bg-transparent border-0 py-2 text-[15px] text-white focus:outline-none placeholder:text-white/25" />
+          </Field>
 
           <button disabled={busy}
-            className="group relative w-full bg-foreground text-background py-4 text-[11px] tracking-[0.4em] uppercase overflow-hidden transition-shadow hover:shadow-[0_20px_50px_-15px] hover:shadow-accent/50 disabled:opacity-50 flex items-center justify-center gap-3">
-            <span className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            className="group relative w-full bg-accent text-foreground py-3.5 text-[11px] tracking-[0.4em] uppercase overflow-hidden transition-all hover:shadow-[0_15px_40px_-10px_rgba(217,168,90,0.6)] disabled:opacity-50 flex items-center justify-center gap-3 mt-2">
+            <span className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
             <span className="relative">{busy ? "Signing in" : "Sign in"}</span>
             <ArrowRight className="relative w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </button>
 
-          <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground/70 text-center">
+          <p className="text-[10px] tracking-[0.3em] uppercase text-white/40 text-center pt-1">
             Forgot password? Contact your mentor.
           </p>
         </form>
+
+        <div className="mt-8 flex items-center justify-center gap-2.5 text-white/40">
+          <span className="text-[9px] tracking-[0.4em] uppercase">Powered by</span>
+          <img src={absolxLogo} alt="AbsolX" className="h-5 w-auto opacity-80" />
+        </div>
       </div>
     </div>
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ icon, label, children }: { icon: React.ReactNode; label: string; children: React.ReactNode }) {
   return (
-    <label className="block">
-      <span className="text-[9px] tracking-[0.4em] uppercase text-muted-foreground">{label}</span>
-      {children}
+    <label className="block group">
+      <div className="flex items-center gap-2 text-[9px] tracking-[0.4em] uppercase text-white/45 mb-1">
+        <span className="text-accent">{icon}</span>{label}
+      </div>
+      <div className="border-b border-white/15 group-focus-within:border-accent transition-colors">
+        {children}
+      </div>
     </label>
   );
 }
