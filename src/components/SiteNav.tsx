@@ -1,13 +1,14 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { useAuth } from "@/hooks/use-auth";
 
 const linkCls =
   "text-[11px] tracking-display uppercase hover:text-accent transition-colors";
 
 export function SiteNav() {
   const nav = useNavigate();
-  const { user } = useAuth();
-  const goCourses = () => nav({ to: user ? "/courses" : "/login" });
+  const goCourses = () => {
+    const loggedIn = typeof window !== "undefined" && sessionStorage.getItem("buddy_fake_auth") === "1";
+    nav({ to: loggedIn ? "/courses" : "/login" });
+  };
 
   return (
     <header className="absolute top-0 left-0 right-0 z-50">
