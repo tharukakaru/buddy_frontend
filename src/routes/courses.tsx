@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { Search, Star, Clock, Users } from "lucide-react";
+import { Search, Star, Clock, Users, Heart, Check, BadgeCheck } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { COURSES, type Course } from "@/lib/courses-data";
@@ -70,8 +70,8 @@ function CoursesPage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-6 md:px-12 pb-32">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
+        <section className="mx-auto max-w-7xl px-6 md:px-12 pb-32">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-14">
             {visible.map((c) => <CourseCard key={c.id} course={c} />)}
           </div>
           {visible.length === 0 && (
@@ -101,56 +101,59 @@ function CourseCard({ course }: { course: Course }) {
       className="group relative cursor-pointer flex flex-col"
       onClick={open}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+      <div className="relative aspect-[4/3] overflow-hidden bg-muted rounded-sm">
         <img src={course.image} alt={course.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
       </div>
 
-      <div className="pt-3 space-y-1">
-        <h3 className="font-serif text-base leading-tight line-clamp-2">{course.title}</h3>
+      <div className="pt-3 space-y-1.5">
+        <h3 className="font-serif text-[15px] leading-tight line-clamp-2 group-hover:text-[#6d28d9] transition-colors">{course.title}</h3>
         {course.siTitle && (
           <p className="font-sinhala text-xs text-muted-foreground">{course.siTitle}</p>
         )}
         <p className="text-[11px] text-muted-foreground">{course.category.split(" ")[0]}</p>
         <div className="flex items-center gap-1 text-xs">
           <span className="font-semibold">4.5</span>
-          <Star className="w-3 h-3 fill-accent text-accent" />
+          <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
           <span className="text-muted-foreground">(2,431)</span>
         </div>
-        <div className="flex gap-1.5 pt-1">
-          {course.tag && (
-            <span className={`text-[9px] px-2 py-0.5 tracking-wider uppercase ${
-              course.tag === "Bestseller" ? "bg-accent/20 text-accent-foreground" :
-              course.tag === "Premium" ? "bg-foreground text-background" : "bg-secondary"
+        {course.tag && (
+          <div className="flex gap-1.5 pt-1">
+            <span className={`text-[9px] px-2 py-0.5 tracking-wider uppercase font-semibold ${
+              course.tag === "Bestseller" ? "bg-teal-100 text-teal-800" :
+              course.tag === "Premium" ? "bg-[#6d28d9] text-white" : "bg-amber-100 text-amber-800"
             }`}>{course.tag}</span>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Hover overlay — Udemy style */}
       {hover && (
-        <div className="hidden md:block absolute z-30 top-0 left-1/2 -translate-x-1/2 -translate-y-2 w-[110%] bg-background border border-border shadow-2xl p-5 pointer-events-none animate-in fade-in zoom-in-95 duration-150">
-          <h4 className="font-serif text-base mb-2">{course.title}</h4>
-          <div className="flex gap-1.5 mb-3">
-            {course.tag && (
-              <span className={`text-[9px] px-2 py-0.5 tracking-wider uppercase ${
-                course.tag === "Bestseller" ? "bg-accent/20" : course.tag === "Premium" ? "bg-foreground text-background" : "bg-secondary"
-              }`}>{course.tag}</span>
+        <div className="hidden md:block absolute z-30 top-0 left-1/2 -translate-x-1/2 -translate-y-3 w-[115%] bg-white border border-border shadow-2xl p-5 pointer-events-none animate-in fade-in zoom-in-95 duration-150 rounded-sm">
+          <h4 className="font-serif text-lg leading-snug mb-3 text-foreground">{course.title}</h4>
+          <div className="flex gap-1.5 mb-2 flex-wrap">
+            <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 bg-[#6d28d9] text-white tracking-wider uppercase font-semibold rounded-sm">
+              <BadgeCheck className="w-3 h-3" /> Premium
+            </span>
+            {course.tag === "Bestseller" && (
+              <span className="text-[10px] px-2 py-0.5 bg-teal-100 text-teal-800 tracking-wider uppercase font-semibold rounded-sm">Bestseller</span>
             )}
-            <span className="text-[10px] px-2 py-0.5 bg-secondary uppercase tracking-wider">{course.level}</span>
           </div>
-          <div className="text-xs text-muted-foreground mb-3 flex gap-3 flex-wrap">
-            <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{course.hours}h · {course.days} days</span>
-            <span className="flex items-center gap-1"><Users className="w-3 h-3" />2,431</span>
-          </div>
-          <p className="text-xs leading-relaxed mb-3">{course.desc}</p>
-          <ul className="space-y-1.5 text-xs">
-            <li className="flex gap-2"><span className="text-accent">✓</span> Adaptive AI tutoring with Buddy</li>
-            <li className="flex gap-2"><span className="text-accent">✓</span> Daily quizzes recalibrate your level</li>
-            <li className="flex gap-2"><span className="text-accent">✓</span> Mentor support when you're stuck</li>
+          <p className="text-[11px] text-emerald-700 font-semibold mb-1">Updated <span className="font-bold">January 2026</span></p>
+          <p className="text-[11px] text-muted-foreground mb-3">{course.hours}h total · {course.level} · {course.days} days</p>
+          <p className="text-[12px] leading-relaxed mb-3 text-foreground">{course.desc}</p>
+          <ul className="space-y-1.5 text-[12px] mb-4">
+            <li className="flex gap-2"><Check className="w-3.5 h-3.5 text-foreground shrink-0 mt-0.5" /> Adaptive AI tutoring with Buddy</li>
+            <li className="flex gap-2"><Check className="w-3.5 h-3.5 text-foreground shrink-0 mt-0.5" /> Daily quizzes recalibrate your level</li>
+            <li className="flex gap-2"><Check className="w-3.5 h-3.5 text-foreground shrink-0 mt-0.5" /> Mentor support whenever you're stuck</li>
           </ul>
-          <div className="mt-4 bg-foreground text-background text-center py-2.5 text-[11px] tracking-[0.25em] uppercase">
-            Enroll Now
+          <div className="flex items-center gap-2">
+            <div className="flex-1 bg-[#6d28d9] hover:bg-[#5b21b6] text-white text-center py-2.5 text-[12px] font-bold tracking-wide rounded-sm">
+              Enroll Now
+            </div>
+            <div className="w-10 h-10 rounded-full border-2 border-[#6d28d9] flex items-center justify-center text-[#6d28d9]">
+              <Heart className="w-4 h-4" />
+            </div>
           </div>
         </div>
       )}
