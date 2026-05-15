@@ -1,191 +1,99 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { toast } from "sonner";
-import { GraduationCap, Briefcase } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { Toaster } from "@/components/ui/sonner";
+import heroImg from "@/assets/foundation-mountain.png";
 
 export const Route = createFileRoute("/signup")({
   component: SignupPage,
   head: () => ({ meta: [{ title: "Create account — BUDDY" }] }),
 });
 
-const SUBJECTS = [
-  "PD Training/Special Program", "English", "Basic Calculations",
-  "Engineering Fundamentals", "Engineering Drawing", "ICT",
-  "Electrical", "Electronics", "PLC", "Workshop Technology",
-  "Machining", "Hydraulics and Pneumatics",
-];
-
 function SignupPage() {
   const nav = useNavigate();
   const [role, setRole] = useState<"student" | "teacher">("student");
-  const [busy, setBusy] = useState(false);
   const [form, setForm] = useState<Record<string, string>>({});
-  const [subjects, setSubjects] = useState<string[]>([]);
   const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.email || !form.password || !form.full_name) {
-      return toast.error("Please fill in name, email and password.");
-    }
-    setBusy(true);
-    const { data, error } = await supabase.auth.signUp({
-      email: form.email,
-      password: form.password,
-      options: {
-        emailRedirectTo: `${window.location.origin}/onboarding`,
-        data: { full_name: form.full_name, role },
-      },
-    });
-    if (error) { setBusy(false); return toast.error(error.message); }
-    const uid = data.user?.id;
-    if (uid) {
-      await supabase.from("profiles").update({
-        full_name: form.full_name,
-        role,
-        status: "pending",
-        age: role === "student" && form.age ? Number(form.age) : null,
-        student_id: role === "student" ? form.student_id || null : null,
-        phone: role === "student" ? form.phone || null : null,
-        hometown: role === "student" ? form.hometown || null : null,
-        qualification: role === "student" ? form.qualification || null : null,
-        department: role === "teacher" ? form.department || null : null,
-        designation: role === "teacher" ? form.designation || null : null,
-        subjects: role === "teacher" ? subjects : null,
-      }).eq("id", uid);
-    }
-    setBusy(false);
-    toast.success("Application submitted — pending review", {
-      description: "You'll get an email once an admin approves your account.",
-      duration: 6000,
-    });
-    setTimeout(() => nav({ to: "/onboarding" }), 1200);
+    // Auth bypass — wire real auth later
+    nav({ to: "/onboarding" });
   };
 
-  const toggleSubject = (s: string) =>
-    setSubjects((cur) => cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]);
-
   return (
-    <div className="min-h-screen w-screen bg-[#0d0c0a] text-white relative overflow-x-hidden">
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#efeae2] via-[#f5f0e8] to-[#e8e0d2] flex items-center justify-center p-4 md:p-8">
       <Toaster />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(217,168,90,0.16),transparent_55%),radial-gradient(circle_at_85%_85%,rgba(120,140,180,0.12),transparent_55%)] pointer-events-none" />
-
-      <div className="relative z-10 px-6 md:px-12 py-6 flex items-center justify-between text-[11px] tracking-[0.35em] uppercase">
-        <Link to="/" className="font-serif text-white/85 hover:text-accent transition-colors">
-          ← Tissa Jinasena Group
-        </Link>
-        <Link to="/login" className="text-white/60 hover:text-accent">Sign in</Link>
-      </div>
-
-      <div className="relative z-10 mx-auto w-[min(560px,92vw)] py-6 md:py-10">
-        <div className="text-center mb-7">
-          <div className="inline-flex items-center gap-2 text-[10px] tracking-[0.5em] uppercase text-accent mb-4">
-            <span className="h-px w-8 bg-accent" /> Join Buddy <span className="h-px w-8 bg-accent" />
+      <div className="w-full max-w-5xl bg-white rounded-2xl shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] overflow-hidden grid md:grid-cols-2 min-h-[600px]">
+        {/* Left */}
+        <div className="relative hidden md:block">
+          <img src={heroImg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/30 to-black/70" />
+          <div className="relative h-full flex flex-col justify-center px-10 text-white">
+            <h2 className="font-serif text-4xl mb-3">Welcome</h2>
+            <p className="text-sm text-white/75 leading-relaxed max-w-xs">
+              Begin your journey with Buddy — built for the next generation of Sri Lanka.{" "}
+              <Link to="/login" className="text-accent font-medium underline-offset-4 hover:underline">Sign in</Link>
+            </p>
           </div>
-          <h1 className="font-serif text-4xl md:text-5xl leading-[0.95]">
-            Begin your <em className="text-accent not-italic">journey</em>.
-          </h1>
-          <p className="mt-3 text-[12px] text-white/55">
-            Every account is reviewed before activation.
-          </p>
         </div>
 
-        <form onSubmit={submit}
-          className="relative bg-white/[0.04] backdrop-blur-xl border border-white/10 p-7 md:p-9 space-y-7 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)]">
-          <span className="absolute top-0 left-0 h-3 w-3 border-t border-l border-accent/60" />
-          <span className="absolute top-0 right-0 h-3 w-3 border-t border-r border-accent/60" />
-          <span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-accent/60" />
-          <span className="absolute bottom-0 right-0 h-3 w-3 border-b border-r border-accent/60" />
+        {/* Right */}
+        <div className="p-8 md:p-10 flex flex-col justify-center">
+          <Link to="/" className="text-[10px] tracking-[0.4em] uppercase text-muted-foreground hover:text-foreground mb-6 inline-block">
+            ← Tissa Jinasena Group
+          </Link>
+          <h1 className="text-2xl font-semibold text-foreground mb-1">Register</h1>
+          <p className="text-sm text-muted-foreground mb-5">Create your account. It's free and takes a minute.</p>
 
-          <div className="grid grid-cols-2 gap-2 p-1 bg-white/5 border border-white/10">
-            <RoleCard active={role === "student"} onClick={() => setRole("student")}
-              icon={<GraduationCap className="w-3.5 h-3.5" />} label="Student" />
-            <RoleCard active={role === "teacher"} onClick={() => setRole("teacher")}
-              icon={<Briefcase className="w-3.5 h-3.5" />} label="Teacher" />
+          <div className="grid grid-cols-2 gap-2 mb-5 p-1 bg-muted rounded-md">
+            {(["student", "teacher"] as const).map((r) => (
+              <button key={r} type="button" onClick={() => setRole(r)}
+                className={`text-xs uppercase tracking-wider py-2 rounded-sm transition-colors ${
+                  role === r ? "bg-foreground text-background" : "text-muted-foreground"
+                }`}>{r}</button>
+            ))}
           </div>
 
-          <div className="space-y-5">
-            <F label="Full Name *"><I value={form.full_name || ""} onChange={(v) => set("full_name", v)} placeholder="e.g. Tharuka Perera" /></F>
-            <div className="grid grid-cols-2 gap-4">
-              <F label="Email *"><I type="email" value={form.email || ""} onChange={(v) => set("email", v)} placeholder="you@example.com" /></F>
-              <F label="Password *"><I type="password" value={form.password || ""} onChange={(v) => set("password", v)} placeholder="••••••••" /></F>
+          <form onSubmit={submit} className="space-y-3">
+            <div className="grid grid-cols-2 gap-3">
+              <input placeholder="First Name" className="w-full border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
+                onChange={(e) => set("first", e.target.value)} required />
+              <input placeholder="Last Name" className="w-full border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
+                onChange={(e) => set("last", e.target.value)} required />
             </div>
-          </div>
+            <input type="email" placeholder="Email" className="w-full border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
+              onChange={(e) => set("email", e.target.value)} required />
+            <input type="password" placeholder="Password" className="w-full border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
+              onChange={(e) => set("password", e.target.value)} required />
+            {role === "student" ? (
+              <div className="grid grid-cols-2 gap-3">
+                <input placeholder="Age" type="number" className="border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
+                  onChange={(e) => set("age", e.target.value)} />
+                <input placeholder="Home Town" className="border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
+                  onChange={(e) => set("hometown", e.target.value)} />
+              </div>
+            ) : (
+              <input placeholder="Department" className="w-full border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
+                onChange={(e) => set("department", e.target.value)} />
+            )}
 
-          {role === "student" ? (
-            <div className="space-y-5 pt-5 border-t border-white/10">
-              <div className="text-[9px] tracking-[0.4em] uppercase text-accent/80">— Student details</div>
-              <div className="grid grid-cols-2 gap-4">
-                <F label="Age"><I type="number" value={form.age || ""} onChange={(v) => set("age", v)} /></F>
-                <F label="Student ID"><I value={form.student_id || ""} onChange={(v) => set("student_id", v)} /></F>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <F label="Phone"><I value={form.phone || ""} onChange={(v) => set("phone", v)} /></F>
-                <F label="Home Town"><I value={form.hometown || ""} onChange={(v) => set("hometown", v)} /></F>
-              </div>
-              <F label="Highest Educational Qualification"><I value={form.qualification || ""} onChange={(v) => set("qualification", v)} /></F>
-            </div>
-          ) : (
-            <div className="space-y-5 pt-5 border-t border-white/10">
-              <div className="text-[9px] tracking-[0.4em] uppercase text-accent/80">— Teacher details</div>
-              <div className="grid grid-cols-2 gap-4">
-                <F label="Department"><I value={form.department || ""} onChange={(v) => set("department", v)} /></F>
-                <F label="Designation"><I value={form.designation || ""} onChange={(v) => set("designation", v)} /></F>
-              </div>
-              <div>
-                <div className="text-[9px] tracking-[0.4em] uppercase text-white/45 mb-3">Subjects</div>
-                <div className="flex flex-wrap gap-2">
-                  {SUBJECTS.map((s) => (
-                    <button type="button" key={s} onClick={() => toggleSubject(s)}
-                      className={`text-[10px] px-3 py-1.5 border transition-all ${subjects.includes(s) ? "bg-accent text-foreground border-accent" : "border-white/15 text-white/70 hover:border-accent hover:text-white"}`}>
-                      {s}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
+            <label className="flex items-center gap-2 text-xs text-muted-foreground pt-1">
+              <input type="checkbox" required className="accent-accent" />
+              I accept the <span className="text-accent">Terms</span> & <span className="text-accent">Privacy Policy</span>
+            </label>
 
-          <button disabled={busy}
-            className="group relative w-full bg-accent text-foreground py-3.5 text-[11px] tracking-[0.4em] uppercase overflow-hidden transition-all hover:shadow-[0_15px_40px_-10px_rgba(217,168,90,0.6)] disabled:opacity-50">
-            <span className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-            <span className="relative">{busy ? "Submitting…" : "Submit for Review"}</span>
-          </button>
-        </form>
+            <button type="submit"
+              className="w-full bg-accent hover:bg-accent/90 text-foreground font-medium py-3 rounded-md text-sm transition-colors mt-2">
+              Register Now
+            </button>
+          </form>
+
+          <p className="text-xs text-muted-foreground text-center mt-5">
+            Already have an account?{" "}
+            <Link to="/login" className="text-foreground font-medium hover:text-accent">Sign in</Link>
+          </p>
+        </div>
       </div>
     </div>
-  );
-}
-
-function RoleCard({ active, onClick, icon, label }: { active: boolean; onClick: () => void; icon: React.ReactNode; label: string }) {
-  return (
-    <button type="button" onClick={onClick}
-      className={`relative flex items-center justify-center gap-2 py-2.5 text-[10px] tracking-[0.35em] uppercase transition-all ${
-        active ? "bg-accent text-foreground" : "text-white/55 hover:text-white"
-      }`}>
-      {icon}
-      {label}
-    </button>
-  );
-}
-
-function F({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <label className="block group">
-      <span className="text-[9px] tracking-[0.4em] uppercase text-white/45">{label}</span>
-      <div className="border-b border-white/15 group-focus-within:border-accent transition-colors">
-        {children}
-      </div>
-    </label>
-  );
-}
-
-function I(props: { value: string; onChange: (v: string) => void; type?: string; placeholder?: string }) {
-  return (
-    <input type={props.type || "text"} value={props.value} onChange={(e) => props.onChange(e.target.value)}
-      placeholder={props.placeholder}
-      className="w-full bg-transparent border-0 py-2 text-[14px] text-white focus:outline-none placeholder:text-white/25" />
   );
 }
