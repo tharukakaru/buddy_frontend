@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import heroOcean from "@/assets/hero-ocean.jpg";
-import buddyRobot from "@/assets/buddy-robot.png";
-import foundationLand from "@/assets/foundation-land.jpg";
+import buddyVideo from "@/assets/buddy-robot.mp4";
+import foundationPurple from "@/assets/foundation-purple.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -45,6 +45,9 @@ function Index() {
           <p className="mt-2 max-w-xl text-xs md:text-sm opacity-65">
             Wisdom is the ability to make the complex simple.
           </p>
+          <p className="mt-10 text-[10px] md:text-[11px] tracking-[0.3em] uppercase opacity-60">
+            Powered by AbsolX Core AI
+          </p>
         </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/70 text-xs tracking-display uppercase animate-bounce">
           ↓ Scroll
@@ -52,21 +55,25 @@ function Index() {
       </section>
 
       {/* Introduction */}
-      <section className="mx-auto max-w-5xl px-6 md:px-12 py-32 md:py-48">
-        <div className="text-[11px] tracking-display uppercase text-muted-foreground mb-8">
+      <section className="relative mx-auto max-w-5xl px-6 md:px-12 py-32 md:py-48">
+        <div className="absolute top-24 left-6 md:left-12 text-[120px] md:text-[200px] font-serif text-accent/10 leading-none select-none pointer-events-none">
+          “
+        </div>
+        <div className="text-[11px] tracking-display uppercase text-accent mb-8">
           — Introduction
         </div>
-        <h2 className="font-serif text-4xl md:text-6xl leading-tight">
+        <h2 className="font-serif italic text-3xl md:text-5xl leading-[1.15] max-w-3xl">
           A knowledge companion for the next generation of Sri Lanka.
         </h2>
-        <div className="mt-12 grid md:grid-cols-2 gap-12 text-base leading-relaxed">
-          <p className="font-sinhala">
+        <div className="w-16 h-px bg-accent my-12" />
+        <div className="grid md:grid-cols-2 gap-16 text-[15px] leading-[1.9]">
+          <p className="font-sinhala text-foreground/80">
             "BUDDY" කෘතීම බුද්ධි යනු හුදෙක් තොරතුරු සපයන මෘදුකාංගයක් නො වේ; එය
             මානව විඥානය ඉහළ නැංවීම සඳහා නිර්මාණය කළ ඥාන සහකරුවෙකි. දශක හතරකට
             අධික කාලයක් ශ්‍රී ලාංකීය තරුණ පරපුර බලගන්වීමට කැපවූ ආචාර්ය තිස්ස
             ජිනසේන මහතාගේ දූරදර්ශී දැක්ම මෙහි පදනමයි.
           </p>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground tracking-wide">
             Buddy is not merely an information tool — it is a knowledge companion
             designed to elevate human consciousness. Built on the four-decade
             vision of Dr. Tissa Jinasena, it weaves entrepreneurial mindset with
@@ -78,13 +85,16 @@ function Index() {
       {/* Buddy AI */}
       <section className="bg-secondary">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-32 grid md:grid-cols-2 gap-16 items-center">
-          <div className="relative aspect-square max-w-md mx-auto w-full">
-            <img
-              src={buddyRobot}
-              alt="Buddy AI mascot"
-              className="w-full h-full object-contain"
-              loading="lazy"
+          <div className="relative aspect-square max-w-md mx-auto w-full rounded-sm overflow-hidden shadow-2xl ring-1 ring-accent/20">
+            <video
+              src={buddyVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-accent/10 via-transparent to-transparent pointer-events-none" />
           </div>
           <div>
             <div className="text-[11px] tracking-display uppercase text-muted-foreground mb-6">
@@ -111,7 +121,7 @@ function Index() {
       {/* Foundation */}
       <section className="relative h-[80vh] overflow-hidden">
         <img
-          src={foundationLand}
+          src={foundationPurple}
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
@@ -145,18 +155,14 @@ function Index() {
           Engineering, manufacturing, and agriculture — taught in Sinhala,
           mentored in person, unlocked one course at a time.
         </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
+        <div className="mt-12 flex justify-center">
           <Link
             to="/courses"
-            className="px-8 py-4 bg-foreground text-background text-xs tracking-display uppercase hover:bg-accent hover:text-accent-foreground transition-colors"
+            className="group relative inline-flex items-center gap-3 px-10 py-5 bg-foreground text-background text-xs tracking-[0.3em] uppercase overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_-15px] hover:shadow-accent/60"
           >
-            Browse Courses
-          </Link>
-          <Link
-            to="/contact"
-            className="px-8 py-4 border border-foreground text-xs tracking-display uppercase hover:bg-foreground hover:text-background transition-colors"
-          >
-            Create Student Account
+            <span className="absolute inset-0 bg-gradient-to-r from-accent via-accent/80 to-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            <span className="relative">Browse Courses</span>
+            <span className="relative transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </div>
       </section>
