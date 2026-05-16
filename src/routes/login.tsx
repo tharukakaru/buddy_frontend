@@ -22,6 +22,12 @@ function LoginPage() {
       sessionStorage.setItem("buddy_fake_auth", "1");
       sessionStorage.setItem("buddy_role", role);
       sessionStorage.setItem("buddy_email", email);
+      const key = "buddy_onboarded_" + email;
+      const firstTime = !localStorage.getItem(key);
+      if (firstTime) {
+        nav({ to: "/onboarding" });
+        return;
+      }
     }
     nav({ to: role === "teacher" ? "/teacher" : "/courses" });
   };
