@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { User, GraduationCap } from "lucide-react";
+import jftLogo from "@/assets/jft-logo.png";
 
 interface SiteNavProps {
   variant?: "light" | "dark";
@@ -34,24 +35,28 @@ export function SiteNav({ variant = "dark", mode = "default" }: SiteNavProps) {
     return (
       <header className="absolute top-0 left-0 right-0 z-50">
         <div className="mx-auto max-w-[980px] px-4 pt-5 md:pt-7">
-          <nav className="mx-auto flex h-12 md:h-14 items-center justify-center gap-4 md:gap-8 rounded-full border border-white/10 bg-black/55 px-4 md:px-7 text-white shadow-2xl shadow-black/60 backdrop-blur-2xl supports-[backdrop-filter]:bg-black/40">
-            <Link to="/about" className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-accent transition-colors">
+          <nav
+            className="mx-auto flex h-12 md:h-14 items-center justify-center gap-4 md:gap-7 rounded-full border border-[#e8c25a]/40 px-4 md:px-7 text-[#3a2a08] shadow-[0_10px_40px_-12px_rgba(212,160,40,0.55)] backdrop-blur-2xl"
+            style={{ background: "linear-gradient(135deg, rgba(255,225,130,0.55), rgba(232,178,60,0.35))" }}
+          >
+            <Link to="/about" className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-[#7a4f00] transition-colors">
               About Us
             </Link>
-            <Link to="/foundation" className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-accent transition-colors">
+            <Link to="/foundation" className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-[#7a4f00] transition-colors">
               JFT
             </Link>
             <Link
               to="/"
-              className="mx-1 md:mx-4 font-serif text-[11px] md:text-[13px] tracking-[0.26em] uppercase text-accent whitespace-nowrap"
+              className="mx-1 md:mx-3 flex items-center gap-2 font-serif text-[11px] md:text-[13px] tracking-[0.26em] uppercase text-[#2a1d05] whitespace-nowrap"
             >
-              Tissa Jinasena Group
+              <img src={jftLogo} alt="" className="h-6 md:h-7 w-auto drop-shadow-sm" />
+              <span>issa Jinasena Group</span>
             </Link>
-            <button onClick={goCourses} className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-accent transition-colors">
+            <button onClick={goCourses} className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-[#7a4f00] transition-colors">
               Courses
             </button>
             {auth.loggedIn && (
-              <button onClick={goProfile} aria-label="Account" className="ml-0 md:ml-1 w-8 h-8 rounded-full bg-white text-foreground flex items-center justify-center hover:bg-accent transition-colors">
+              <button onClick={goProfile} aria-label="Account" className="ml-0 md:ml-1 w-8 h-8 rounded-full bg-[#2a1d05] text-[#f4d873] flex items-center justify-center hover:bg-[#7a4f00] transition-colors">
                 {auth.role === "teacher" ? <GraduationCap className="w-4 h-4" /> : <User className="w-4 h-4" />}
               </button>
             )}

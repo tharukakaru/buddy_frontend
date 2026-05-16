@@ -25,6 +25,12 @@ function SignupPage() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("buddy_fake_auth", "1");
+      sessionStorage.setItem("buddy_role", role);
+      sessionStorage.setItem("buddy_email", form.email || "user@buddy.lk");
+      localStorage.setItem("buddy_first_login_" + (form.email || "user"), "1");
+    }
     nav({ to: "/onboarding" });
   };
 
@@ -90,8 +96,28 @@ function SignupPage() {
                   onChange={(e) => set("hometown", e.target.value)} />
               </div>
             ) : (
-              <input placeholder="Department" className="w-full border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
-                onChange={(e) => set("department", e.target.value)} />
+              <div className="space-y-3">
+                <input placeholder="Department" className="w-full border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
+                  onChange={(e) => set("department", e.target.value)} />
+                <div className="grid grid-cols-2 gap-3">
+                  <input placeholder="Age" type="number" className="border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
+                    onChange={(e) => set("age", e.target.value)} />
+                  <input placeholder="Phone Number" type="tel" className="border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
+                    onChange={(e) => set("phone", e.target.value)} />
+                </div>
+                <input placeholder="Current Position" className="w-full border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
+                  onChange={(e) => set("position", e.target.value)} />
+                <select
+                  defaultValue=""
+                  onChange={(e) => set("ai_literacy", e.target.value)}
+                  className="w-full border border-border rounded-md px-4 py-2.5 text-sm bg-white focus:outline-none focus:border-accent"
+                >
+                  <option value="" disabled>AI Literacy Level</option>
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="advanced">Advanced</option>
+                </select>
+              </div>
             )}
 
             <label className="flex items-center gap-2 text-xs text-muted-foreground pt-1">
