@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import buddyVideo from "@/assets/robot-white.mp4";
-import knowledgeGrid from "@/assets/knowledge-grid.png";
+import aboutMockups from "@/assets/about-mockups.png";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -45,7 +45,7 @@ function AboutPage() {
             </h1>
           </div>
           <div className="relative">
-            <img src={knowledgeGrid} alt="Knowledge grid" className="w-full h-auto object-contain" />
+            <img src={aboutMockups} alt="Buddy interface mockups" className="w-full h-auto object-contain" />
           </div>
         </section>
 
