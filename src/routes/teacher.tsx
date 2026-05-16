@@ -73,12 +73,25 @@ function TeacherDashboard() {
       <SiteNav />
 
       <section className="bg-foreground text-background pt-32 pb-10">
-        <div className="mx-auto max-w-7xl px-6 md:px-12">
-          <div className="text-[10px] tracking-[0.4em] uppercase text-accent mb-2">— Teacher Dashboard</div>
-          <h1 className="font-serif text-4xl md:text-5xl capitalize">Welcome, {teacher.name.split(" ")[0]}.</h1>
-          <p className="text-background/70 mt-2 text-sm">
-            Engineering Department · Senior Lecturer
-          </p>
+        <div className="mx-auto max-w-7xl px-6 md:px-12 flex flex-col md:flex-row md:items-start gap-6">
+          <div className="flex-1">
+            <div className="text-[10px] tracking-[0.4em] uppercase text-accent mb-2">— Teacher Dashboard</div>
+            <h1 className="font-serif text-4xl md:text-5xl capitalize">Welcome, {teacher.name.split(" ")[0]}.</h1>
+            <p className="text-background/70 mt-2 text-sm">
+              Engineering Department · Senior Lecturer
+            </p>
+          </div>
+          <button
+            onClick={() => {
+              sessionStorage.removeItem("buddy_fake_auth");
+              sessionStorage.removeItem("buddy_role");
+              sessionStorage.removeItem("buddy_email");
+              nav({ to: "/" });
+            }}
+            className="text-[11px] tracking-[0.3em] uppercase border border-background/40 px-5 py-2.5 hover:bg-background hover:text-foreground transition-colors"
+          >
+            Sign out
+          </button>
         </div>
       </section>
 

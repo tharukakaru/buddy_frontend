@@ -86,17 +86,8 @@ function ProfilePage() {
           ))}
         </div>
 
-        <div>
-          <h2 className="font-serif text-2xl mb-5">Personal Information</h2>
-          <div className="grid md:grid-cols-2 gap-x-10 gap-y-5 text-sm border border-border p-6">
-            <Info icon={<User />} label="Full Name" value={profile.full_name} />
-            <Info icon={<Mail />} label="Email" value={profile.email} />
-            <Info icon={<GraduationCap />} label="Student ID" value="JTF-2026-0182" />
-            <Info icon={<Phone />} label="Phone" value="+94 77 123 4567" />
-            <Info icon={<MapPin />} label="Home Town" value="Colombo" />
-            <Info icon={<Award />} label="Qualification" value="GCE A/L" />
-          </div>
-        </div>
+        <PersonalInfo profile={profile} />
+
 
         <div>
           <h2 className="font-serif text-2xl mb-5">My Courses</h2>
