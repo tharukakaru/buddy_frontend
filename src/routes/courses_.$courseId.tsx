@@ -209,30 +209,6 @@ function CourseDetail() {
             </div>
           </div>
 
-          {/* Reviews */}
-          <div>
-            <h2 className="text-xl font-bold mb-4">Student feedback</h2>
-            <div className="grid grid-cols-[auto_1fr] gap-6 items-start">
-              <div className="text-center">
-                <div className="text-5xl font-bold text-[#b4690e]">4.5</div>
-                <div className="flex justify-center text-[#b4690e] my-1">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
-                </div>
-                <div className="text-[12px] text-[#b4690e] font-semibold">Course Rating</div>
-              </div>
-              <div className="space-y-1.5 w-full max-w-md">
-                {[80, 14, 4, 1, 1].map((p, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="flex-1 h-2 bg-secondary"><div className="h-full bg-foreground" style={{ width: `${p}%` }} /></div>
-                    <div className="flex text-[#b4690e]">
-                      {Array.from({ length: 5 - i }).map((_, k) => <Star key={k} className="w-3 h-3 fill-current" />)}
-                    </div>
-                    <span className="text-[12px] text-[#5624d0] font-semibold w-10">{p}%</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
 
         <aside className="hidden md:block" />
