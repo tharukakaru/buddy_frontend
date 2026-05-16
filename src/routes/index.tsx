@@ -61,25 +61,26 @@ function Index() {
       </section>
 
       {/* Introduction */}
-      <section className="relative bg-background text-foreground">
-        <div className="mx-auto max-w-[1500px] px-6 md:px-12 py-32 md:py-48 grid md:grid-cols-[0.9fr_1.1fr] gap-14 md:gap-20 items-center">
+      <section className="relative bg-background text-foreground -mt-[18svh] md:-mt-[22svh] z-20">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-16 pt-40 md:pt-56 pb-24 md:pb-32 grid md:grid-cols-[1fr_1.05fr] gap-12 md:gap-20 items-start">
           <div className="relative">
-            <div className="absolute -top-14 -left-2 text-[120px] md:text-[180px] font-serif text-accent/10 leading-none select-none pointer-events-none">"</div>
-            <div className="text-[11px] tracking-display uppercase text-accent mb-8">— Introduction</div>
-            <h2 className="font-serif italic text-3xl md:text-5xl leading-[1.15] max-w-3xl">
+            <div className="flex gap-1 text-accent text-2xl md:text-3xl font-serif mb-10 leading-none">
+              <span>"</span><span>"</span>
+            </div>
+            <div className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-8">— Introduction</div>
+            <h2 className="font-serif italic text-3xl md:text-5xl leading-[1.2] text-foreground/90 mb-12 max-w-xl">
               A knowledge companion for the next generation of Sri Lanka.
             </h2>
-            <div className="w-16 h-px bg-accent my-12" />
-            <div className="grid sm:grid-cols-2 gap-10 text-[15px] leading-[1.9]">
-              <p className="font-sinhala text-foreground/80">
-                "BUDDY" කෘතීම බුද්ධි යනු හුදෙක් තොරතුරු සපයන මෘදුකාංගයක් නො වේ; එය මානව විඥානය ඉහළ නැංවීම සඳහා නිර්මාණය කළ ඥාන සහකරුවෙකි. දශක හතරකට අධික කාලයක් ශ්‍රී ලාංකීය තරුණ පරපුර බලගන්වීමට කැපවූ ආචාර්ය තිස්ස ජිනසේන මහතාගේ දූරදර්ශී දැක්ම මෙහි පදනමයි.
-              </p>
-              <p className="text-muted-foreground tracking-wide">
-                Buddy is not merely an information tool — it is a knowledge companion designed to elevate human consciousness. Built on the four-decade vision of Dr. Tissa Jinasena, it weaves entrepreneurial mindset with the essence of Buddhist philosophy.
-              </p>
-            </div>
+            <p className="font-sinhala text-[12px] md:text-[13px] leading-[1.95] text-muted-foreground mb-5 max-w-lg">
+              "BUDDY" කෘතීම බුද්ධි යනු හුදෙක් තොරතුරු සපයන මෘදුකාංගයක් නො වේ; එය මානව විඥානය ඉහළ නැංවීම සඳහා නිර්මාණය කළ ඥාන සහකරුවෙකි. දශක හතරකට අධික කාලයක් ශ්‍රී ලාංකීය තරුණ පරපුර බලගන්වීමට කැපවූ ආචාර්ය තිස්ස ජිනසේන මහතාගේ දූරදර්ශී දැක්ම මෙහි පදනමයි.
+            </p>
+            <p className="text-[11px] md:text-[12px] leading-[1.9] text-muted-foreground/80 italic max-w-lg">
+              "Buddy is not merely an information tool — it is a knowledge companion designed to elevate human consciousness. Built on the four-decade vision of Dr. Tissa Jinasena, it weaves entrepreneurial mindset with the essence of Buddhist philosophy."
+            </p>
           </div>
-          <img src={knowledgeGrid} alt="Buddy knowledge interface" className="w-full h-auto object-contain shadow-2xl" />
+          <div className="relative md:-mt-8">
+            <img src={knowledgeGrid} alt="Buddy knowledge interface" className="w-full h-auto object-contain" />
+          </div>
         </div>
       </section>
 
