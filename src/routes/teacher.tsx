@@ -278,3 +278,101 @@ function StatusPill({ status }: { status: Status }) {
   }[status];
   return <span className={`text-[10px] tracking-[0.2em] uppercase px-2 py-1 ${cls}`}>{status}</span>;
 }
+
+function TeacherProfilePanel({
+  teacher, onClose, onSignOut,
+}: { teacher: { name: string; email: string }; onClose: () => void; onSignOut: () => void }) {
+  const [editing, setEditing] = useState(false);
+  const [data, setData] = useState({
+    full_name: teacher.name,
+    email: teacher.email,
+    phone: "+94 77 555 0142",
+    age: "38",
+    department: "Engineering",
+    position: "Senior Lecturer",
+    ai_literacy: "Intermediate",
+  });
+  const fields: Array<{ k: keyof typeof data; label: string; icon: React.ReactNode; type?: string }> = [
+    { k: "full_name", label: "Full Name", icon: <User /> },
+    { k: "email", label: "Email", icon: <Mail /> },
+    { k: "phone", label: "Phone", icon: <Phone /> },
+    { k: "age", label: "Age", icon: <User />, type: "number" },
+    { k: "department", label: "Department", icon: <BookOpen /> },
+    { k: "position", label: "Current Position", icon: <Briefcase /> },
+    { k: "ai_literacy", label: "AI Literacy", icon: <Sparkles /> },
+  ];
+
+  return (
+    <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex justify-end" onClick={onClose}>
+      <aside
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-md h-full bg-background border-l border-border overflow-y-auto"
+      >
+        <div className="flex items-center justify-between px-6 py-5 border-b border-border">
+          <div className="text-[10px] tracking-[0.3em] uppercase text-accent">— Teacher Profile</div>
+          <button onClick={onClose} className="w-8 h-8 rounded-full hover:bg-secondary flex items-center justify-center"><X className="w-4 h-4" /></button>
+        </div>
+        <div className="px-6 py-6 flex items-center gap-4 border-b border-border">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-foreground/30 flex items-center justify-center text-xl font-serif capitalize">
+            {data.full_name[0]?.toUpperCase()}
+          </div>
+          <div>
+            <div className="font-serif text-xl capitalize">{data.full_name}</div>
+            <div className="text-xs text-muted-foreground">{data.position}</div>
+          </div>
+        </div>
+
+        <div className="px-6 py-6 space-y-4">
+          {fields.map((f) => (
+            <div key={f.k} className="flex gap-3">
+              <span className="text-accent mt-1 [&>svg]:w-4 [&>svg]:h-4">{f.icon}</span>
+              <div className="flex-1">
+                <div className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground">{f.label}</div>
+                {editing ? (
+                  f.k === "ai_literacy" ? (
+                    <select
+                      value={data.ai_literacy}
+                      onChange={(e) => setData((d) => ({ ...d, ai_literacy: e.target.value }))}
+                      className="mt-1 w-full border-b border-border bg-transparent text-sm py-1 focus:outline-none focus:border-accent"
+                    >
+                      <option>Beginner</option>
+                      <option>Intermediate</option>
+                      <option>Advanced</option>
+                    </select>
+                  ) : (
+                    <input
+                      type={f.type || "text"}
+                      value={data[f.k]}
+                      onChange={(e) => setData((d) => ({ ...d, [f.k]: e.target.value }))}
+                      className="mt-1 w-full border-b border-border bg-transparent text-sm py-1 focus:outline-none focus:border-accent"
+                    />
+                  )
+                ) : (
+                  <div className="text-sm mt-0.5">{data[f.k] || "—"}</div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="px-6 py-5 border-t border-border space-y-2">
+          {editing ? (
+            <button
+              onClick={() => { setEditing(false); toast.success("Profile updated"); }}
+              className="w-full bg-foreground text-background py-3 text-[11px] tracking-[0.3em] uppercase hover:bg-accent hover:text-foreground transition-colors"
+            >Save</button>
+          ) : (
+            <button
+              onClick={() => setEditing(true)}
+              className="w-full border border-foreground py-3 text-[11px] tracking-[0.3em] uppercase hover:bg-foreground hover:text-background transition-colors"
+            >Edit</button>
+          )}
+          <button
+            onClick={onSignOut}
+            className="w-full border border-border py-3 text-[11px] tracking-[0.3em] uppercase text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+          >Sign out</button>
+        </div>
+      </aside>
+    </div>
+  );
+}
