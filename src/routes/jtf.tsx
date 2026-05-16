@@ -53,18 +53,63 @@ function JtfPage() {
           <h1 className="font-serif text-4xl md:text-6xl leading-[1.05] max-w-4xl">
             AI technology meets an enlightened social mission.
           </h1>
+          <p className="font-sinhala text-[13px] md:text-base leading-[1.95] text-muted-foreground mt-8 max-w-3xl">
+            ආචාර්ය තිස්ස ජිනසේන මහතාගේ මූලික අරමුණ වන්නේ නවීන කෘතීම බුද්ධිය (AI) සහ උසස් තාක්ෂණය මානුෂීය මෙහෙවරක් සඳහා යොදා ගනිමින් වඩාත් යහපත් සමාජයක් ගොඩනැගීමයි. ලෝක ප්‍රකට 'ලෝඩ්ස්ටාර්' (Loadstar) වැනි දැවැන්ත කර්මාන්තශාලා ගොඩනැගූ ඒ සුවිශේෂී ව්‍යවසායකත්ව අත්දැකීම් (Entrepreneur Mindset) පදනම් කරගනිමින්, ග්‍රාමීය තරුණ පරපුර හුදෙක් රැකියා සොයන්නන් නොව, රැකියා උත්පාදනය කරන නිර්මාණශීලී ව්‍යවසායකයන් බවට පත් කිරීම අපගේ දැක්මයි.
+          </p>
+          <p className="font-sinhala text-[13px] md:text-base leading-[1.95] text-muted-foreground mt-5 max-w-3xl">
+            මෙම ක්‍රියාවලිය හුදෙක් තාක්ෂණයට පමණක් සීමා නොවී, බෞද්ධ දර්ශනය පදනම් කරගත් විඥාන සංවර්ධනය (Consciousness Development) ඔස්සේ තමා සහ විශ්වය පිළිබඳ අවබෝධයක් ඇති, ආධ්‍යාත්මිකව දියුණු මිනිසෙකු නිර්මාණය කිරීම අපගේ පරම අභිලාෂයයි.
+          </p>
         </section>
 
-        {/* Founder */}
+        {/* Chairman's message */}
         <section className="mx-auto max-w-6xl px-6 md:px-12 py-12 grid md:grid-cols-2 gap-16 items-center">
           <div className="aspect-[4/5] overflow-hidden bg-muted">
             <img src={founder} alt="Dr. Tissa Jinasena" className="w-full h-full object-cover" />
           </div>
           <div>
-            <blockquote className="font-serif text-xl md:text-2xl leading-snug italic">
-              "ග්‍රාමීය තරුණයා බලගැන්වීමේ සිහිනය සැබෑ කරමින් — knowledge that travels from the village to the world."
+            <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-6">— Chairman's Message</div>
+            <p className="font-sinhala text-base text-muted-foreground mb-6">සභාපතිතුමාගේ පණිවිඩය</p>
+            <blockquote className="font-sinhala text-[14px] md:text-[15px] leading-[2] italic text-foreground/85">
+              "පසුගිය වසර 45 පුරා මා උත්සාහ කළේ සිද්ධස්ථාන ප්‍රතිසංස්කරණය සහ තරුණ තරුණියන් දහස් ගණනකට පුහුණුව ලබා දීම හරහා මෙරට මානව විඥානය ඉහළ නැංවීමටයි. එහෙත් මානව විඥානය භයානක ලෙස පහත වැටෙමින් පවතින අතර, මිනිසා විසින්ම තමා ව විනාශ කරගන්නා තැනකට ලෝකය ගමන් කරමින් සිටී. අනාවැකි පළ වී ඇති පරිදි, මෙම සියවස තුළ සිදුවන විපර්යාසයෙන් ඉතිරි වන පිරිසට, තිරසාර නව ලෝකයක් ගොඩනැගීමට අවශ්‍ය සැබෑ දැනුම සහ AI වැනි නවීන තාක්ෂණයන් අප ලබා දිය යුතුය. බෞද්ධ දර්ශනය සහ නවීන විද්‍යාව මුසු වූ ප්‍රබුද්ධ නායකත්වයක් බිහි කිරීම අපගේ අපේක්ෂාවයි."
             </blockquote>
             <p className="text-[11px] tracking-display uppercase text-muted-foreground mt-6">— ආචාර්ය තිස්ස ජිනසේන (සභාපති)</p>
+          </div>
+        </section>
+
+        {/* Our Journey */}
+        <section className="bg-secondary py-20 md:py-28">
+          <div className="mx-auto max-w-6xl px-6 md:px-12">
+            <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-6">— Our Journey</div>
+            <p className="font-sinhala text-base text-muted-foreground mb-4">අපගේ ගමන් මග: ජිනසේන පුහුණු පදනම</p>
+            <h2 className="font-serif text-3xl md:text-5xl leading-tight max-w-3xl mb-10">
+              From a village dream to a nation-building mission.
+            </h2>
+            <p className="font-sinhala text-[13px] md:text-sm leading-[1.95] text-foreground/85 max-w-3xl mb-12">
+              ජිනසේන සමූහ ව්‍යාපාරයේ නිර්මාතෘ සී. ජිනසේන මහතාගේ "ග්‍රාමීය තරුණයා බලගැන්වීමේ" සිහිනය සැබෑ කරමින් ආචාර්ය තිස්ස ජිනසේන මහතා විසින් මෙම පදනම ස්ථාපිත කරන ලදී.
+            </p>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-background p-8 border-t-2 border-accent">
+                <p className="font-sinhala text-[13px] text-accent mb-2 tracking-wide">වෘත්තීය පුහුණුව</p>
+                <h3 className="font-serif text-lg mb-4">Vocational Training</h3>
+                <p className="font-sinhala text-[12px] leading-[1.85] text-muted-foreground">
+                  2013 වසරේ සිට ක්‍රියාත්මක වන NVQ 4 මට්ටමේ කාර්මික මෙකට්‍රොනික්ස් පුහුණුව හරහා තරුණයින් 500කට අධික පිරිසක් ඉංජිනේරු ක්ෂේත්‍රයේ ඉහළ තලයට රැගෙන ගොස් ඇත.
+                </p>
+              </div>
+              <div className="bg-background p-8 border-t-2 border-accent">
+                <p className="font-sinhala text-[13px] text-accent mb-2 tracking-wide">ව්‍යවසායකත්වය</p>
+                <h3 className="font-serif text-lg mb-4">Entrepreneurship</h3>
+                <p className="font-sinhala text-[12px] leading-[1.85] text-muted-foreground">
+                  ලෝඩ්ස්ටාර් අත්දැකීම් ඇසුරින් අප ලබා දෙන පුහුණුව නිසා, සිසුන්ගෙන් 90%ක්ම ප්‍රමුඛ පෙළේ කර්මාන්තශාලාවල සේවය කරන අතර, තවත් පිරිසක් සාර්ථක ව්‍යවසායකයන් ලෙස සිය ගම්මාන බලගන්වයි.
+                </p>
+              </div>
+              <div className="bg-background p-8 border-t-2 border-accent">
+                <p className="font-sinhala text-[13px] text-accent mb-2 tracking-wide">නොමිලේ සේවාව</p>
+                <h3 className="font-serif text-lg mb-4">Free of Charge</h3>
+                <p className="font-sinhala text-[12px] leading-[1.85] text-muted-foreground">
+                  තෝරාගත් ග්‍රාමීය තරුණ ප්‍රජාව වෙත නවාතැන්, ආහාර, නිල ඇඳුම් සහ සියලුම ඉගැන්වීම් ද්‍රව්‍ය සම්පූර්ණයෙන්ම නොමිලේ ලබා දෙමින් සමාජ සාධාරණත්වය ඉටු කරමු.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
