@@ -162,10 +162,12 @@ function CourseCard({ course, onEnroll }: { course: Course; onEnroll: () => void
         </div>
         {course.tag && (
           <div className="flex gap-1.5 pt-1">
-            <span className={`text-[9px] px-2 py-0.5 tracking-wider uppercase font-semibold ${
-              course.tag === "Bestseller" ? "bg-teal-100 text-teal-800" :
+            <span className={`text-[9px] px-2 py-0.5 tracking-wider uppercase font-semibold leading-tight ${
+              course.tag === "Bestseller" ? "bg-amber-100 text-amber-900" :
               course.tag === "Premium" ? "bg-[#6d28d9] text-white" : "bg-amber-100 text-amber-800"
-            }`}>{course.tag}</span>
+            }`}>
+              {course.tag === "Bestseller" ? "Be grateful for free education given by Jinasena Padanama" : course.tag}
+            </span>
           </div>
         )}
       </div>
@@ -179,7 +181,9 @@ function CourseCard({ course, onEnroll }: { course: Course; onEnroll: () => void
               <BadgeCheck className="w-3 h-3" /> Premium
             </span>
             {course.tag === "Bestseller" && (
-              <span className="text-[10px] px-2 py-0.5 bg-teal-100 text-teal-800 tracking-wider uppercase font-semibold rounded-sm">Bestseller</span>
+              <span className="text-[10px] px-2 py-0.5 bg-amber-100 text-amber-900 tracking-wider uppercase font-semibold rounded-sm leading-tight">
+                Be grateful for free education given by Jinasena Padanama
+              </span>
             )}
           </div>
           <p className="text-[11px] text-emerald-700 font-semibold mb-1">Updated <span className="font-bold">January 2026</span></p>
