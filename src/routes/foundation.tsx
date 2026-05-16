@@ -4,6 +4,14 @@ import { ChevronLeft, ChevronRight, ArrowUpRight, Sparkles, GraduationCap, Cpu, 
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import founder from "@/assets/founder.jpg";
+import jft1 from "@/assets/jft-1.jpg";
+import jft2 from "@/assets/jft-2.jpg";
+import jft3 from "@/assets/jft-3.jpg";
+import jft4 from "@/assets/jft-4.jpg";
+import jft5 from "@/assets/jft-5.jpg";
+import jft6 from "@/assets/jft-6.jpg";
+
+const GALLERY = [jft1, jft2, jft3, jft4, jft5, jft6];
 
 export const Route = createFileRoute("/foundation")({
   component: FoundationPage,
@@ -53,6 +61,17 @@ function FoundationPage() {
           <h1 className="font-serif text-4xl md:text-6xl leading-[1.05] max-w-4xl">
             AI technology meets an enlightened social mission.
           </h1>
+        </section>
+
+        {/* Gallery strip — between the two headings */}
+        <section className="mx-auto max-w-7xl px-6 md:px-12 pt-4 pb-10">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
+            {GALLERY.map((src, i) => (
+              <div key={i} className="aspect-square overflow-hidden rounded-sm bg-muted">
+                <img src={src} alt="" loading="lazy" className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* 7 expertise cards — Udemy-style horizontal scroller */}
