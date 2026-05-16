@@ -61,6 +61,35 @@ function FoundationPage() {
           <h1 className="font-serif text-4xl md:text-6xl leading-[1.05] max-w-4xl">
             AI technology meets an enlightened social mission.
           </h1>
+          <div className="grid md:grid-cols-2 gap-10 mt-12 max-w-5xl">
+            <p className="font-sinhala text-[13px] md:text-[14px] leading-[2] text-muted-foreground">
+              ආචාර්ය තිස්ස ජිනසේන මහතාගේ මූලික අරමුණ වන්නේ නවීන කෘතීම බුද්ධිය (AI) සහ උසස් තාක්ෂණය මානුෂීය මෙහෙවරක් සඳහා යොදා ගනිමින් වඩාත් යහපත් සමාජයක් ගොඩනැගීමයි. ලෝක ප්‍රකට 'ලෝඩ්ස්ටාර්' (Loadstar) වැනි දැවැන්ත කර්මාන්තශාලා ගොඩනැගූ ඒ සුවිශේෂී ව්‍යවසායකත්ව අත්දැකීම් (Entrepreneur Mindset) පදනම් කරගනිමින්, ග්‍රාමීය තරුණ පරපුර හුදෙක් රැකියා සොයන්නන් නොව, රැකියා උත්පාදනය කරන නිර්මාණශීලී ව්‍යවසායකයන් බවට පත් කිරීම අපගේ දැක්මයි.
+            </p>
+            <p className="font-sinhala text-[13px] md:text-[14px] leading-[2] text-muted-foreground">
+              මෙම ක්‍රියාවලිය හුදෙක් තාක්ෂණයට පමණක් සීමා නොවී, බෞද්ධ දර්ශනය පදනම් කරගත් විඥාන සංවර්ධනය (Consciousness Development) ඔස්සේ තමා සහ විශ්වය පිළිබඳ අවබෝධයක් ඇති, ආධ්‍යාත්මිකව දියුණු මිනිසෙකු නිර්මාණය කිරීම අපගේ පරම අභිලාෂයයි.
+            </p>
+          </div>
+        </section>
+
+        {/* Chairman's message */}
+        <section className="mx-auto max-w-6xl px-6 md:px-12 py-16 md:py-20">
+          <div className="grid md:grid-cols-12 gap-10 items-start">
+            <div className="md:col-span-5">
+              <div className="aspect-[4/5] overflow-hidden bg-muted rounded-sm">
+                <img src={founder} alt="Dr. Tissa Jinasena" className="w-full h-full object-cover" />
+              </div>
+              <p className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mt-4">— Chairman</p>
+              <p className="font-sinhala text-[13px] text-foreground mt-1">ආචාර්ය තිස්ස ජිනසේන</p>
+            </div>
+            <div className="md:col-span-7 relative">
+              <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-4">— Chairman's Message</div>
+              <p className="font-sinhala text-base text-muted-foreground mb-6">සභාපතිතුමාගේ පණිවිඩය</p>
+              <span aria-hidden className="font-serif text-7xl md:text-9xl leading-none text-accent/30 select-none block -mb-6">“</span>
+              <blockquote className="font-sinhala text-[14px] md:text-[15px] leading-[2.05] italic text-foreground/90 border-l-2 border-accent pl-6">
+                පසුගිය වසර 45 පුරා මා උත්සාහ කළේ සිද්ධස්ථාන ප්‍රතිසංස්කරණය සහ තරුණ තරුණියන් දහස් ගණනකට පුහුණුව ලබා දීම හරහා මෙරට මානව විඥානය ඉහළ නැංවීමටයි. එහෙත් මානව විඥානය භයානක ලෙස පහත වැටෙමින් පවතින අතර, මිනිසා විසින්ම තමා ව විනාශ කරගන්නා තැනකට ලෝකය ගමන් කරමින් සිටී. අනාවැකි පළ වී ඇති පරිදි, මෙම සියවස තුළ සිදුවන විපර්යාසයෙන් ඉතිරි වන පිරිසට, තිරසාර නව ලෝකයක් ගොඩනැගීමට අවශ්‍ය සැබෑ දැනුම සහ AI වැනි නවීන තාක්ෂණයන් අප ලබා දිය යුතුය. බෞද්ධ දර්ශනය සහ නවීන විද්‍යාව මුසු වූ ප්‍රබුද්ධ නායකත්වයක් බිහි කිරීම අපගේ අපේක්ෂාවයි.
+              </blockquote>
+            </div>
+          </div>
         </section>
 
         {/* Gallery strip — between the two headings */}
