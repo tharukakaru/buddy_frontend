@@ -160,6 +160,10 @@ function FoundationPage() {
               <h2 className="font-serif text-3xl md:text-5xl leading-[1.1]">
                 From a village dream<br />to a nation-building mission.
               </h2>
+              <p className="font-sinhala text-[13px] text-accent mt-6 mb-3">අපගේ ගමන් මග: ජිනසේන පුහුණු පදනම</p>
+              <p className="font-sinhala text-background/75 text-[13px] md:text-sm leading-[2] max-w-md">
+                ජිනසේන සමූහ ව්‍යාපාරයේ නිර්මාතෘ සී. ජිනසේන මහතාගේ "ග්‍රාමීය තරුණයා බලගැන්වීමේ" සිහිනය සැබෑ කරමින් ආචාර්ය තිස්ස ජිනසේන මහතා විසින් මෙම පදනම ස්ථාපිත කරන ලදී.
+              </p>
               <p className="text-background/70 text-sm md:text-base leading-[1.85] mt-6 max-w-md">
                 Founded on C. Jinasena's vision to empower rural youth, and led today by Dr. Tissa Jinasena, the Foundation turns world-class industrial experience into an open invitation — free of charge, available to anyone with the will to learn.
               </p>
