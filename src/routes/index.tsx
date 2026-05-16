@@ -48,8 +48,8 @@ function Index() {
           </div>
         </div>
 
-        <div className="relative z-30 -mt-2 md:-mt-4 h-[34svh] min-h-[220px]">
-          <ContainerScroll titleComponent={<></>} className="!h-[44rem] md:!h-[56rem] !p-0">
+        <div className="relative z-30 -mt-2 md:-mt-4 h-[34svh] min-h-[220px] overflow-visible">
+          <ContainerScroll titleComponent={<></>} className="!h-[44rem] md:!h-[56rem] !p-0 overflow-visible">
             <img
               src={buddyHead}
               alt="Buddy AI"
