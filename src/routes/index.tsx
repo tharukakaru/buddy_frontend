@@ -24,7 +24,7 @@ function Index() {
   const goAbout = () => nav({ to: "/about" });
 
   return (
-    <div className="bg-black text-white">
+    <div className="bg-background text-foreground">
       <SiteNav variant="light" mode="pill" />
 
       {/* Hero — solid black with container scroll animation */}
@@ -61,47 +61,45 @@ function Index() {
       </section>
 
       {/* Introduction */}
-      <section className="bg-white text-foreground">
-        <div className="mx-auto max-w-[1500px] px-6 md:px-12 py-28 md:py-36 grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div>
-            <div className="text-[11px] tracking-display uppercase text-accent mb-6">— Introduction</div>
-            <p className="font-sinhala text-xs text-muted-foreground mb-5 tracking-wide">හැඳින්වීම</p>
-            <h2 className="font-serif italic text-3xl md:text-5xl leading-[1.1] mb-10">
+      <section className="relative bg-background text-foreground">
+        <div className="mx-auto max-w-[1500px] px-6 md:px-12 py-32 md:py-48 grid md:grid-cols-[0.9fr_1.1fr] gap-14 md:gap-20 items-center">
+          <div className="relative">
+            <div className="absolute -top-14 -left-2 text-[120px] md:text-[180px] font-serif text-accent/10 leading-none select-none pointer-events-none">"</div>
+            <div className="text-[11px] tracking-display uppercase text-accent mb-8">— Introduction</div>
+            <h2 className="font-serif italic text-3xl md:text-5xl leading-[1.15] max-w-3xl">
               A knowledge companion for the next generation of Sri Lanka.
             </h2>
-            <p className="font-sinhala text-[13px] leading-[1.95] text-foreground/80 mb-5">
-              "BUDDY" කෘතීම බුද්ධි යනු හුදෙක් තොරතුරු සපයන මෘදුකාංගයක් නො වේ; එය මානව විඥානය ඉහළ නැංවීම සඳහා නිර්මාණය කළ ඥාන සහකරුවෙකි. දශක හතරකට අධික කාලයක් ශ්‍රී ලාංකීය තරුණ පරපුර බලගන්වීමට කැපවූ ආචාර්ය තිස්ස ජිනසේන මහතාගේ දූරදර්ශී දැක්ම මෙහි පදනමයි.
-            </p>
-            <p className="text-[13px] leading-[1.9] text-muted-foreground">
-              Buddy is not merely an information tool — it is a knowledge companion designed to elevate human consciousness. Built on the four-decade vision of Dr. Tissa Jinasena, it weaves entrepreneurial mindset with the essence of Buddhist philosophy.
-            </p>
-            <button
-              onClick={goAbout}
-              className="mt-10 inline-flex items-center gap-2 text-xs tracking-[0.3em] uppercase border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors"
-            >
-              Meet Buddy →
-            </button>
+            <div className="w-16 h-px bg-accent my-12" />
+            <div className="grid sm:grid-cols-2 gap-10 text-[15px] leading-[1.9]">
+              <p className="font-sinhala text-foreground/80">
+                "BUDDY" කෘතීම බුද්ධි යනු හුදෙක් තොරතුරු සපයන මෘදුකාංගයක් නො වේ; එය මානව විඥානය ඉහළ නැංවීම සඳහා නිර්මාණය කළ ඥාන සහකරුවෙකි. දශක හතරකට අධික කාලයක් ශ්‍රී ලාංකීය තරුණ පරපුර බලගන්වීමට කැපවූ ආචාර්ය තිස්ස ජිනසේන මහතාගේ දූරදර්ශී දැක්ම මෙහි පදනමයි.
+              </p>
+              <p className="text-muted-foreground tracking-wide">
+                Buddy is not merely an information tool — it is a knowledge companion designed to elevate human consciousness. Built on the four-decade vision of Dr. Tissa Jinasena, it weaves entrepreneurial mindset with the essence of Buddhist philosophy.
+              </p>
+            </div>
           </div>
-          <div className="relative">
-            <img src={knowledgeGrid} alt="Buddy knowledge interface" className="w-full h-auto object-contain shadow-2xl" />
-          </div>
+          <img src={knowledgeGrid} alt="Buddy knowledge interface" className="w-full h-auto object-contain shadow-2xl" />
         </div>
       </section>
 
-      {/* Buddy avatar */}
+      {/* Buddy AI — white bg with autoplay video */}
       <section className="bg-white text-foreground">
-        <div className="mx-auto max-w-[1300px] px-6 md:px-12 pb-28 md:pb-36 grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div className="aspect-square max-w-md mx-auto w-full rounded-sm overflow-hidden shadow-2xl ring-1 ring-accent/20 relative bg-white">
-            <video src={buddyVideo} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+        <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-32 grid md:grid-cols-2 gap-16 items-center">
+          <div className="relative aspect-square max-w-md mx-auto w-full rounded-sm overflow-hidden bg-white">
+            <video src={buddyVideo} autoPlay loop muted playsInline preload="auto" className="w-full h-full object-cover" />
           </div>
           <div>
-            <div className="text-[11px] tracking-display uppercase text-accent mb-6">— Buddy AI</div>
-            <h2 className="font-serif italic text-3xl md:text-5xl leading-[1.1] mb-8">
-              A calm guide for learning, skills, and conscious growth.
+            <div className="text-[11px] tracking-display uppercase text-muted-foreground mb-6">— Buddy AI</div>
+            <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-8">
+              From <em>"this is hard"</em> to <em>"I understand"</em>.
             </h2>
-            <p className="font-sinhala text-[13px] leading-[1.95] text-muted-foreground">
-              නවීන AI තාක්ෂණය, ශ්‍රී ලාංකීය තරුණ පරපුරට දැනුම පහසුවෙන් අවබෝධ කරගැනීමට සහ ප්‍රායෝගික කුසලතා වර්ධනය කිරීමට සමීප මාර්ගෝපදේශකයෙකු ලෙස භාවිතා වේ.
+            <p className="text-muted-foreground leading-relaxed mb-6">
+              Whatever you find difficult, Buddy explains it simply — until you can say "I get it now." Because true wisdom is not the accumulation of facts, but the ability to see the world clearly.
             </p>
+            <button onClick={goAbout} className="inline-flex items-center gap-2 text-sm tracking-display uppercase border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors">
+              Meet Buddy →
+            </button>
           </div>
         </div>
       </section>
