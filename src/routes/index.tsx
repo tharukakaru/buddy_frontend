@@ -3,10 +3,10 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import buddyHead from "@/assets/buddy-head.png";
-import aboutMockups from "@/assets/about-mockups.png";
+import knowledgeGrid from "@/assets/knowledge-grid.png";
+import buddyVideo from "@/assets/robot-white.mp4";
 import foundationLand from "@/assets/foundation-land.jpg";
 import absolxLogo from "@/assets/absolx-logo.png";
-import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -20,8 +20,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const nav = useNavigate();
-  const { user } = useAuth();
-  const goCourses = () => nav({ to: user ? "/courses" : "/login" });
+  const goCourses = () => nav({ to: sessionStorage.getItem("buddy_fake_auth") === "1" ? "/courses" : "/login" });
   const goAbout = () => nav({ to: "/about" });
 
   return (
