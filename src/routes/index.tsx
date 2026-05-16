@@ -25,11 +25,11 @@ function Index() {
 
   return (
     <div className="bg-black text-white">
-      <SiteNav variant="light" />
+      <SiteNav variant="light" mode="pill" />
 
       {/* Hero — solid black with container scroll animation */}
-      <section className="relative w-full overflow-hidden bg-black">
-        <div className="pt-32 md:pt-36 pb-4 flex flex-col items-center text-center px-6">
+      <section className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-black flex flex-col">
+        <div className="pt-28 md:pt-32 pb-0 flex flex-col items-center text-center px-6 relative z-10">
           <div className="text-[10px] md:text-xs tracking-[0.3em] uppercase opacity-70 mb-6">
             Tissa Jinasena Group Presents
           </div>
@@ -48,7 +48,8 @@ function Index() {
           </div>
         </div>
 
-        <ContainerScroll titleComponent={<></>}>
+        <div className="relative z-0 -mt-2 md:-mt-4 h-[28svh] min-h-[190px] overflow-hidden">
+        <ContainerScroll titleComponent={<></>} className="-mb-40">
           <img
             src={buddyHead}
             alt="Buddy AI"
@@ -56,9 +57,10 @@ function Index() {
             draggable={false}
           />
         </ContainerScroll>
+        </div>
       </section>
 
-      {/* Introduction — knowledge companion with mockups */}
+      {/* Introduction */}
       <section className="bg-white text-foreground">
         <div className="mx-auto max-w-[1500px] px-6 md:px-12 py-28 md:py-36 grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div>
@@ -81,7 +83,25 @@ function Index() {
             </button>
           </div>
           <div className="relative">
-            <img src={aboutMockups} alt="Buddy on every device" className="w-full h-auto object-contain" />
+            <img src={knowledgeGrid} alt="Buddy knowledge interface" className="w-full h-auto object-contain shadow-2xl" />
+          </div>
+        </div>
+      </section>
+
+      {/* Buddy avatar */}
+      <section className="bg-white text-foreground">
+        <div className="mx-auto max-w-[1300px] px-6 md:px-12 pb-28 md:pb-36 grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+          <div className="aspect-square max-w-md mx-auto w-full rounded-sm overflow-hidden shadow-2xl ring-1 ring-accent/20 relative bg-white">
+            <video src={buddyVideo} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+          </div>
+          <div>
+            <div className="text-[11px] tracking-display uppercase text-accent mb-6">— Buddy AI</div>
+            <h2 className="font-serif italic text-3xl md:text-5xl leading-[1.1] mb-8">
+              A calm guide for learning, skills, and conscious growth.
+            </h2>
+            <p className="font-sinhala text-[13px] leading-[1.95] text-muted-foreground">
+              නවීන AI තාක්ෂණය, ශ්‍රී ලාංකීය තරුණ පරපුරට දැනුම පහසුවෙන් අවබෝධ කරගැනීමට සහ ප්‍රායෝගික කුසලතා වර්ධනය කිරීමට සමීප මාර්ගෝපදේශකයෙකු ලෙස භාවිතා වේ.
+            </p>
           </div>
         </div>
       </section>
