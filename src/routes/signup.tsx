@@ -12,11 +12,19 @@ function SignupPage() {
   const nav = useNavigate();
   const [role, setRole] = useState<"student" | "teacher">("student");
   const [form, setForm] = useState<Record<string, string>>({});
+  const [photo, setPhoto] = useState<string | null>(null);
   const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
+
+  const onPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => setPhoto(reader.result as string);
+    reader.readAsDataURL(file);
+  };
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Auth bypass — wire real auth later
     nav({ to: "/onboarding" });
   };
 
@@ -55,6 +63,15 @@ function SignupPage() {
           </div>
 
           <form onSubmit={submit} className="space-y-3">
+            <div className="flex items-center gap-4 pb-1">
+              <div className="w-16 h-16 rounded-full bg-secondary border border-border overflow-hidden flex items-center justify-center text-xs text-muted-foreground">
+                {photo ? <img src={photo} alt="" className="w-full h-full object-cover" /> : "Photo"}
+              </div>
+              <label className="text-[11px] tracking-[0.2em] uppercase border border-border px-4 py-2 cursor-pointer hover:bg-secondary">
+                Upload profile image
+                <input type="file" accept="image/*" className="hidden" onChange={onPhoto} />
+              </label>
+            </div>
             <div className="grid grid-cols-2 gap-3">
               <input placeholder="First Name" className="w-full border border-border rounded-md px-4 py-2.5 text-sm focus:outline-none focus:border-accent"
                 onChange={(e) => set("first", e.target.value)} required />

@@ -13,9 +13,11 @@ function LoginPage() {
   const [role, setRole] = useState<"student" | "teacher">("student");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [code, setCode] = useState("");
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (code.length !== 6) return;
     if (typeof window !== "undefined") {
       sessionStorage.setItem("buddy_fake_auth", "1");
       sessionStorage.setItem("buddy_role", role);
@@ -74,6 +76,20 @@ function LoginPage() {
               placeholder="Password"
               className="w-full border border-border rounded-md px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors"
             />
+
+            <div>
+              <label className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mb-1.5 block">Sign-in Code</label>
+              <input
+                inputMode="numeric"
+                pattern="\d{6}"
+                maxLength={6}
+                required
+                value={code}
+                onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                placeholder="6-digit code"
+                className="w-full border border-border rounded-md px-4 py-3 text-sm tracking-[0.5em] text-center font-mono focus:outline-none focus:border-accent transition-colors"
+              />
+            </div>
 
             <div className="flex items-center justify-between text-xs text-muted-foreground pt-1">
               <label className="flex items-center gap-2 cursor-pointer">

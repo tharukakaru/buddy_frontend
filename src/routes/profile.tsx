@@ -86,17 +86,8 @@ function ProfilePage() {
           ))}
         </div>
 
-        <div>
-          <h2 className="font-serif text-2xl mb-5">Personal Information</h2>
-          <div className="grid md:grid-cols-2 gap-x-10 gap-y-5 text-sm border border-border p-6">
-            <Info icon={<User />} label="Full Name" value={profile.full_name} />
-            <Info icon={<Mail />} label="Email" value={profile.email} />
-            <Info icon={<GraduationCap />} label="Student ID" value="JTF-2026-0182" />
-            <Info icon={<Phone />} label="Phone" value="+94 77 123 4567" />
-            <Info icon={<MapPin />} label="Home Town" value="Colombo" />
-            <Info icon={<Award />} label="Qualification" value="GCE A/L" />
-          </div>
-        </div>
+        <PersonalInfo profile={profile} />
+
 
         <div>
           <h2 className="font-serif text-2xl mb-5">My Courses</h2>
@@ -141,3 +132,66 @@ function Info({ icon, label, value }: { icon: React.ReactNode; label: string; va
     </div>
   );
 }
+
+function PersonalInfo({ profile }: { profile: { email: string; full_name: string; role: string } }) {
+  const [editing, setEditing] = useState(false);
+  const [data, setData] = useState({
+    full_name: profile.full_name,
+    email: profile.email,
+    student_id: "JTF-2026-0182",
+    phone: "+94 77 123 4567",
+    hometown: "Colombo",
+    qualification: "GCE A/L",
+  });
+  const fields: Array<{ k: keyof typeof data; label: string; icon: React.ReactNode }> = [
+    { k: "full_name", label: "Full Name", icon: <User /> },
+    { k: "email", label: "Email", icon: <Mail /> },
+    { k: "student_id", label: "Student ID", icon: <GraduationCap /> },
+    { k: "phone", label: "Phone", icon: <Phone /> },
+    { k: "hometown", label: "Home Town", icon: <MapPin /> },
+    { k: "qualification", label: "Qualification", icon: <Award /> },
+  ];
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-5">
+        <h2 className="font-serif text-2xl">Personal Information</h2>
+        {editing ? (
+          <button
+            onClick={() => { setEditing(false); toast.success("Profile updated"); }}
+            className="text-[11px] tracking-[0.3em] uppercase bg-foreground text-background px-5 py-2.5 hover:bg-accent hover:text-foreground transition-colors"
+          >
+            Save
+          </button>
+        ) : (
+          <button
+            onClick={() => setEditing(true)}
+            className="text-[11px] tracking-[0.3em] uppercase border border-foreground px-5 py-2.5 hover:bg-foreground hover:text-background transition-colors"
+          >
+            Edit
+          </button>
+        )}
+      </div>
+      <div className="grid md:grid-cols-2 gap-x-10 gap-y-5 text-sm border border-border p-6">
+        {fields.map((f) => (
+          <div key={f.k} className="flex gap-3">
+            <span className="text-accent mt-0.5 [&>svg]:w-4 [&>svg]:h-4">{f.icon}</span>
+            <div className="flex-1">
+              <div className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground">{f.label}</div>
+              {editing ? (
+                <input
+                  value={data[f.k]}
+                  onChange={(e) => setData((d) => ({ ...d, [f.k]: e.target.value }))}
+                  className="mt-1 w-full border-b border-border bg-transparent text-sm py-1 focus:outline-none focus:border-accent"
+                />
+              ) : (
+                <div className="text-sm mt-0.5">{data[f.k] || "—"}</div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
