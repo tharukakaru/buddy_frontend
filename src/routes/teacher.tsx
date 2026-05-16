@@ -2,9 +2,11 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { toast } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 import {
   Users, BookOpen, TrendingUp, AlertTriangle, Search, Filter, ChevronRight,
-  CheckCircle2, Activity,
+  CheckCircle2, Activity, User, X, Mail, Phone, Briefcase, Sparkles,
 } from "lucide-react";
 
 export const Route = createFileRoute("/teacher")({
@@ -40,6 +42,14 @@ function TeacherDashboard() {
   const [tab, setTab] = useState<"overview" | "students" | "subjects">("overview");
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState<"all" | Status>("all");
+  const [showProfile, setShowProfile] = useState(false);
+
+  const signOut = () => {
+    sessionStorage.removeItem("buddy_fake_auth");
+    sessionStorage.removeItem("buddy_role");
+    sessionStorage.removeItem("buddy_email");
+    nav({ to: "/" });
+  };
 
   useEffect(() => {
     const auth = sessionStorage.getItem("buddy_fake_auth") === "1";
@@ -71,6 +81,7 @@ function TeacherDashboard() {
   return (
     <div className="bg-background">
       <SiteNav />
+      <Toaster />
 
       <section className="bg-foreground text-background pt-32 pb-10">
         <div className="mx-auto max-w-7xl px-6 md:px-12 flex flex-col md:flex-row md:items-start gap-6">
@@ -82,18 +93,22 @@ function TeacherDashboard() {
             </p>
           </div>
           <button
-            onClick={() => {
-              sessionStorage.removeItem("buddy_fake_auth");
-              sessionStorage.removeItem("buddy_role");
-              sessionStorage.removeItem("buddy_email");
-              nav({ to: "/" });
-            }}
-            className="text-[11px] tracking-[0.3em] uppercase border border-background/40 px-5 py-2.5 hover:bg-background hover:text-foreground transition-colors"
+            onClick={() => setShowProfile(true)}
+            aria-label="Open profile"
+            className="w-11 h-11 rounded-full bg-accent text-foreground flex items-center justify-center hover:bg-accent/90 transition-colors shrink-0"
           >
-            Sign out
+            <User className="w-5 h-5" />
           </button>
         </div>
       </section>
+
+      {showProfile && (
+        <TeacherProfilePanel
+          teacher={teacher}
+          onClose={() => setShowProfile(false)}
+          onSignOut={signOut}
+        />
+      )}
 
       <div className="mx-auto max-w-7xl px-6 md:px-12 py-10 space-y-10">
         {/* Tabs */}
