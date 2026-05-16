@@ -34,7 +34,7 @@ export function SiteNav({ variant = "dark", mode = "default" }: SiteNavProps) {
     return (
       <header className="absolute top-0 left-0 right-0 z-50">
         <div className="mx-auto max-w-[980px] px-4 pt-5 md:pt-7">
-          <nav className="mx-auto flex h-12 md:h-14 items-center justify-center gap-4 md:gap-8 rounded-full border border-white/15 bg-white/10 px-4 md:px-7 text-white shadow-2xl shadow-black/40 backdrop-blur-xl">
+          <nav className="mx-auto flex h-12 md:h-14 items-center justify-center gap-4 md:gap-8 rounded-full border border-white/10 bg-black/55 px-4 md:px-7 text-white shadow-2xl shadow-black/60 backdrop-blur-2xl supports-[backdrop-filter]:bg-black/40">
             <Link to="/about" className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-accent transition-colors">
               About Us
             </Link>

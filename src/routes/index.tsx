@@ -48,8 +48,8 @@ function Index() {
           </div>
         </div>
 
-        <div className="relative z-0 -mt-2 md:-mt-4 h-[28svh] min-h-[190px] overflow-hidden">
-          <ContainerScroll titleComponent={<></>} className="-mb-40">
+        <div className="relative z-30 -mt-2 md:-mt-4 h-[34svh] min-h-[220px]">
+          <ContainerScroll titleComponent={<></>} className="!h-[44rem] md:!h-[56rem] !p-0">
             <img
               src={buddyHead}
               alt="Buddy AI"
@@ -60,25 +60,25 @@ function Index() {
         </div>
       </section>
 
-      {/* Introduction */}
-      <section className="relative bg-background text-foreground -mt-[18svh] md:-mt-[22svh] z-20">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-16 pt-40 md:pt-56 pb-24 md:pb-32 grid md:grid-cols-[1fr_1.05fr] gap-12 md:gap-20 items-start">
+      {/* Introduction — text left, knowledge-grid right (image-34 layout) */}
+      <section className="relative bg-background text-foreground z-10">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-16 pt-32 md:pt-48 pb-24 md:pb-32 grid md:grid-cols-[0.95fr_1.15fr] gap-10 md:gap-16 items-start">
           <div className="relative">
-            <div className="flex gap-1 text-accent text-2xl md:text-3xl font-serif mb-10 leading-none">
+            <div className="flex gap-1 text-accent text-xl md:text-2xl font-serif mb-8 leading-none">
               <span>"</span><span>"</span>
             </div>
-            <div className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-8">— Introduction</div>
-            <h2 className="font-serif italic text-3xl md:text-5xl leading-[1.2] text-foreground/90 mb-12 max-w-xl">
-              A knowledge companion for the next generation of Sri Lanka.
+            <div className="text-[10px] tracking-[0.3em] uppercase text-accent/80 mb-6">— Introduction</div>
+            <h2 className="font-serif italic text-[28px] md:text-[40px] leading-[1.15] text-foreground/90 mb-10 max-w-xl">
+              A knowledge companion for the<br />next generation of Sri Lanka.
             </h2>
-            <p className="font-sinhala text-[12px] md:text-[13px] leading-[1.95] text-muted-foreground mb-5 max-w-lg">
+            <p className="font-sinhala text-[11px] md:text-[12px] leading-[1.9] text-muted-foreground mb-4 max-w-md">
               "BUDDY" කෘතීම බුද්ධි යනු හුදෙක් තොරතුරු සපයන මෘදුකාංගයක් නො වේ; එය මානව විඥානය ඉහළ නැංවීම සඳහා නිර්මාණය කළ ඥාන සහකරුවෙකි. දශක හතරකට අධික කාලයක් ශ්‍රී ලාංකීය තරුණ පරපුර බලගන්වීමට කැපවූ ආචාර්ය තිස්ස ජිනසේන මහතාගේ දූරදර්ශී දැක්ම මෙහි පදනමයි.
             </p>
-            <p className="text-[11px] md:text-[12px] leading-[1.9] text-muted-foreground/80 italic max-w-lg">
+            <p className="text-[10px] md:text-[11px] leading-[1.85] text-muted-foreground/80 italic max-w-md">
               "Buddy is not merely an information tool — it is a knowledge companion designed to elevate human consciousness. Built on the four-decade vision of Dr. Tissa Jinasena, it weaves entrepreneurial mindset with the essence of Buddhist philosophy."
             </p>
           </div>
-          <div className="relative md:-mt-8">
+          <div className="relative md:-mt-4 md:-mr-8">
             <img src={knowledgeGrid} alt="Buddy knowledge interface" className="w-full h-auto object-contain" />
           </div>
         </div>
