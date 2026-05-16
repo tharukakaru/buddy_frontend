@@ -123,7 +123,36 @@ function FoundationPage() {
           </div>
         </section>
 
-        {/* Mission split card — image-20 style */}
+        {/* Story strip — content showcase */}
+        <section className="bg-foreground text-background py-20 md:py-28">
+          <div className="mx-auto max-w-7xl px-6 md:px-12 grid md:grid-cols-12 gap-10 items-start">
+            <div className="md:col-span-5 md:sticky md:top-32">
+              <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-5">— The Journey</div>
+              <h2 className="font-serif text-3xl md:text-5xl leading-[1.1]">
+                From a village dream<br />to a nation-building mission.
+              </h2>
+              <p className="text-background/70 text-sm md:text-base leading-[1.85] mt-6 max-w-md">
+                Founded on C. Jinasena's vision to empower rural youth, and led today by Dr. Tissa Jinasena, the Foundation turns world-class industrial experience into an open invitation — free of charge, available to anyone with the will to learn.
+              </p>
+            </div>
+            <div className="md:col-span-7 grid sm:grid-cols-2 gap-5">
+              {[
+                { k: "01", t: "Vocational Training", b: "Since 2013, our NVQ Level 4 Mechatronics programme has lifted over 500 youth into the upper echelons of engineering." },
+                { k: "02", t: "Entrepreneurship", b: "Built on Loadstar-grade experience — 90% of graduates work in leading factories, others build the next generation of village industries." },
+                { k: "03", t: "Free of Charge", b: "Lodging, meals, uniforms, materials — all completely free for selected rural youth. Social justice is non-negotiable." },
+                { k: "04", t: "Buddhist + AI", b: "Modern AI tooling married to consciousness development — a generation that is wise as well as skilled." },
+              ].map((c) => (
+                <div key={c.k} className="border border-background/15 p-6 hover:border-accent transition-colors">
+                  <div className="text-[10px] tracking-[0.3em] text-accent">{c.k}</div>
+                  <h3 className="font-serif text-lg mt-3 mb-2">{c.t}</h3>
+                  <p className="text-background/70 text-[13px] leading-[1.85]">{c.b}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+
         <section className="mx-auto max-w-7xl px-6 md:px-12 pb-24 md:pb-32">
           <div className="grid md:grid-cols-5 rounded-sm overflow-hidden border border-border bg-background">
             <div className="md:col-span-2 p-8 md:p-12 flex flex-col justify-between gap-8 bg-secondary">

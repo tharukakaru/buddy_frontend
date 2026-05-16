@@ -1,10 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import heroOcean from "@/assets/hero-ocean.jpg";
 import founder from "@/assets/founder.jpg";
 import buddyVideo from "@/assets/buddy-robot.mp4";
 import foundation from "@/assets/foundation-mountain.png";
+import jftLogo from "@/assets/jft-logo.png";
 
 export const Route = createFileRoute("/onboarding")({
   component: OnboardingPage,
@@ -15,33 +15,33 @@ const SLIDES = [
   {
     eyebrow: "Chapter 1",
     title: "A vision four decades in the making",
-    body: "Dr. Tissa Jinasena spent forty years building Sri Lanka's industrial backbone — and dreaming of a tool that could pass that knowledge to the next generation.",
+    body: "Dr. Tissa Jinasena spent forty years building Sri Lanka's industrial backbone — from Loadstar's global factories to nurturing rural youth — dreaming of a tool that could pass that knowledge to the next generation.",
     media: founder,
   },
   {
     eyebrow: "Chapter 2",
     title: "Meet Buddy",
-    body: "Buddy is your knowledge companion. Whatever you find difficult, Buddy explains it simply — until you can say 'I get it now.'",
+    body: "Buddy is your knowledge companion — built on AI, guided by wisdom. Whatever you find difficult, Buddy explains it patiently until you can say, 'I get it now.'",
     media: buddyVideo,
     isVideo: true,
   },
   {
     eyebrow: "Chapter 3",
     title: "Wisdom, not just information",
-    body: "Buddy weaves entrepreneurial mindset with the essence of Buddhist philosophy. The goal isn't facts — it's the ability to see the world clearly.",
+    body: "Buddy weaves an entrepreneurial mindset with the essence of Buddhist philosophy. The goal isn't facts — it's the ability to see the world, and yourself, clearly.",
     media: heroOcean,
   },
   {
     eyebrow: "Chapter 4",
     title: "Built for you, adaptive every day",
-    body: "Pick a level — Beginner, Intermediate, or Advanced. Each daily quiz tunes tomorrow's lesson to exactly where you are.",
+    body: "Pick your level — Beginner, Intermediate, or Advanced. Each daily quiz tunes tomorrow's lesson to exactly where you are. No two journeys are the same.",
     media: foundation,
   },
   {
     eyebrow: "Chapter 5",
-    title: "You're not alone",
-    body: "When something stumps you, Buddy AI is one tap away — and your mentors are right behind it.",
-    media: foundation,
+    title: "You're never alone",
+    body: "When something stumps you, Buddy AI is one tap away — and behind it stand mentors from the Jinasena Training Foundation, ready to walk with you.",
+    media: jftLogo,
   },
 ];
 
@@ -50,19 +50,20 @@ function OnboardingPage() {
   const [i, setI] = useState(0);
   const slide = SLIDES[i];
   const last = i === SLIDES.length - 1;
+  const [role, setRole] = useState<string>("student");
+  const [email, setEmail] = useState<string>("");
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) nav({ to: "/login" });
-    });
+    if (typeof window === "undefined") return;
+    const auth = sessionStorage.getItem("buddy_fake_auth") === "1";
+    if (!auth) { nav({ to: "/login" }); return; }
+    setRole(sessionStorage.getItem("buddy_role") || "student");
+    setEmail(sessionStorage.getItem("buddy_email") || "");
   }, [nav]);
 
-  const finish = async () => {
-    const { data } = await supabase.auth.getUser();
-    if (data.user) {
-      await supabase.from("profiles").update({ onboarding_completed: true }).eq("id", data.user.id);
-    }
-    nav({ to: "/courses" });
+  const finish = () => {
+    if (email) localStorage.setItem("buddy_onboarded_" + email, "1");
+    nav({ to: role === "teacher" ? "/teacher" : "/courses" });
   };
 
   return (

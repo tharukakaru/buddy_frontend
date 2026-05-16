@@ -53,20 +53,13 @@ function CourseDetail() {
               {course.longDesc || `${course.desc} Understand how it works and how to leverage this course to transform your career.`}
             </p>
             {course.tag && (
-              <span className="inline-block bg-[#eceb98] text-[#3d3c0a] px-2 py-1 text-[11px] font-bold tracking-wide mb-3">
-                {course.tag}
+              <span className="inline-block bg-[#fff3c4] text-[#5b3d00] px-3 py-1 text-[11px] font-bold tracking-wide mb-3 leading-tight">
+                {course.tag === "Bestseller"
+                  ? "Be grateful for free education given by Jinasena Padanama"
+                  : course.tag}
               </span>
             )}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] mb-3">
-              <span className="flex items-center gap-1.5">
-                <span className="font-bold text-[#e0b651]">4.5</span>
-                <span className="flex">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 fill-[#e0b651] text-[#e0b651]" />)}
-                </span>
-                <span className="text-[#cec0fc] underline">(2,431 ratings)</span>
-              </span>
-              <span className="text-white/85">8,567 learners</span>
-            </div>
+            <p className="text-[13px] text-white/85 mb-2">8,567 learners enrolled</p>
             <p className="text-[13px] text-white/85 mb-2">
               Created by <span className="text-[#cec0fc] underline">Jinasena Padanama</span>
             </p>
@@ -88,42 +81,12 @@ function CourseDetail() {
                 <span className="text-sm font-semibold">Preview this course</span>
               </div>
             </div>
-            <div className="p-5 space-y-3">
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold">Free</span>
-                <span className="text-sm text-muted-foreground line-through">LKR 8,900</span>
-                <span className="text-sm text-[#a435f0] font-semibold">100% off</span>
-              </div>
-              <div className="text-[12px] text-[#a435f0] font-semibold">
-                ⏱ 2 days left at this price!
-              </div>
+            <div className="p-5">
               <button
                 onClick={() => toast.success("Enrolled! Day 1 unlocked.")}
                 className="w-full bg-[#a435f0] hover:bg-[#8710d8] text-white py-3 text-sm font-bold transition-colors">
                 Enroll now
               </button>
-              <button className="w-full border border-foreground py-3 text-sm font-bold hover:bg-secondary transition-colors">
-                Add to cart
-              </button>
-              <p className="text-[11px] text-center text-muted-foreground">30-Day Money-Back Guarantee</p>
-              <p className="text-[11px] text-center text-muted-foreground">Full Lifetime Access</p>
-
-              <div className="pt-3">
-                <div className="font-bold text-sm mb-2">This course includes:</div>
-                <ul className="space-y-1.5 text-[13px]">
-                  <li className="flex gap-2"><Play className="w-3.5 h-3.5 mt-0.5" /> {course.hours} hours on-demand video</li>
-                  <li className="flex gap-2"><FileText className="w-3.5 h-3.5 mt-0.5" /> {course.days} downloadable resources</li>
-                  <li className="flex gap-2"><InfinityIcon className="w-3.5 h-3.5 mt-0.5" /> Full lifetime access</li>
-                  <li className="flex gap-2"><Smartphone className="w-3.5 h-3.5 mt-0.5" /> Access on mobile and TV</li>
-                  <li className="flex gap-2"><Award className="w-3.5 h-3.5 mt-0.5" /> Certificate of completion</li>
-                </ul>
-              </div>
-
-              <div className="flex items-center justify-between pt-3 border-t border-border text-[12px]">
-                <button className="font-semibold underline flex items-center gap-1"><Share2 className="w-3.5 h-3.5" /> Share</button>
-                <button className="font-semibold underline">Gift this course</button>
-                <button className="font-semibold underline flex items-center gap-1"><Heart className="w-3.5 h-3.5" /></button>
-              </div>
             </div>
           </aside>
         </div>
@@ -246,30 +209,6 @@ function CourseDetail() {
             </div>
           </div>
 
-          {/* Reviews */}
-          <div>
-            <h2 className="text-xl font-bold mb-4">Student feedback</h2>
-            <div className="grid grid-cols-[auto_1fr] gap-6 items-start">
-              <div className="text-center">
-                <div className="text-5xl font-bold text-[#b4690e]">4.5</div>
-                <div className="flex justify-center text-[#b4690e] my-1">
-                  {[1,2,3,4,5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
-                </div>
-                <div className="text-[12px] text-[#b4690e] font-semibold">Course Rating</div>
-              </div>
-              <div className="space-y-1.5 w-full max-w-md">
-                {[80, 14, 4, 1, 1].map((p, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="flex-1 h-2 bg-secondary"><div className="h-full bg-foreground" style={{ width: `${p}%` }} /></div>
-                    <div className="flex text-[#b4690e]">
-                      {Array.from({ length: 5 - i }).map((_, k) => <Star key={k} className="w-3 h-3 fill-current" />)}
-                    </div>
-                    <span className="text-[12px] text-[#5624d0] font-semibold w-10">{p}%</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
 
         <aside className="hidden md:block" />
