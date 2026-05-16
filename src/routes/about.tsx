@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import buddyVideo from "@/assets/robot-white.mp4";
+import knowledgeGrid from "@/assets/knowledge-grid.png";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -33,14 +34,19 @@ function AboutPage() {
     <div>
       <SiteNav />
       <div className="pt-32">
-        <section className="mx-auto max-w-5xl px-6 md:px-12 py-20">
-          <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-6">
-            — About
+        <section className="mx-auto max-w-[1500px] px-6 md:px-12 py-20 grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-6">
+              — About
+            </div>
+            <p className="font-sinhala text-xs text-muted-foreground mb-4 tracking-wide">අප ගැන</p>
+            <h1 className="font-serif italic text-4xl md:text-6xl leading-[1.1] max-w-xl text-foreground/90">
+              Buddy is a knowledge companion, not just a chatbot.
+            </h1>
           </div>
-          <p className="font-sinhala text-xs text-muted-foreground mb-4 tracking-wide">අප ගැන</p>
-          <h1 className="font-serif italic text-4xl md:text-6xl leading-[1.1] max-w-3xl text-foreground/90">
-            Buddy is a knowledge companion, not just a chatbot.
-          </h1>
+          <div className="relative">
+            <img src={knowledgeGrid} alt="Knowledge grid" className="w-full h-auto object-contain" />
+          </div>
         </section>
 
         <section className="mx-auto max-w-5xl px-6 md:px-12 py-20 grid md:grid-cols-2 gap-16 items-center">
