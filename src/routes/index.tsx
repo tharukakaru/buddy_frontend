@@ -49,14 +49,14 @@ function Index() {
         </div>
 
         <div className="relative z-0 -mt-2 md:-mt-4 h-[28svh] min-h-[190px] overflow-hidden">
-        <ContainerScroll titleComponent={<></>} className="-mb-40">
-          <img
-            src={buddyHead}
-            alt="Buddy AI"
-            className="mx-auto h-full w-full object-cover rounded-2xl"
-            draggable={false}
-          />
-        </ContainerScroll>
+          <ContainerScroll titleComponent={<></>} className="-mb-40">
+            <img
+              src={buddyHead}
+              alt="Buddy AI"
+              className="mx-auto h-full w-full object-cover rounded-2xl"
+              draggable={false}
+            />
+          </ContainerScroll>
         </div>
       </section>
 
