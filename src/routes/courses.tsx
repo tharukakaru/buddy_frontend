@@ -16,17 +16,12 @@ export const Route = createFileRoute("/courses")({
   }),
 });
 
-const CATEGORIES = [
-  "All",
-  "Foundation / Core Sciences",
-  "Mechanical Engineering & Manufacturing",
-  "Electrical & Automation",
-  "Agriculture & Sustainability",
-];
+const CATEGORIES = ["All", "Foundation", "Engineering", "Technology", "Electrical", "Automation", "Mechanical"];
 
 function CoursesPage() {
   const [cat, setCat] = useState("All");
   const [q, setQ] = useState("");
+  const [enrollCourse, setEnrollCourse] = useState<Course | null>(null);
 
   const visible = useMemo(
     () => COURSES.filter((c) =>
@@ -42,9 +37,11 @@ function CoursesPage() {
       <div className="pt-32">
         <section className="mx-auto max-w-6xl px-6 md:px-12 pb-12">
           <div className="text-[11px] tracking-display uppercase text-muted-foreground mb-6">— Buddy JIT</div>
-          <h1 className="font-serif text-5xl md:text-7xl mb-6">All Courses</h1>
-          <p className="text-muted-foreground max-w-xl mb-10">
-            International-standard, AI-personalized — pick a course, set your level, and let Buddy adapt every day.
+          <h1 className="font-serif text-3xl md:text-5xl leading-[1.15] mb-6 max-w-4xl">
+            Sri Lanka's first AI-powered vocational education ecosystem.
+          </h1>
+          <p className="text-muted-foreground max-w-2xl mb-10 leading-relaxed">
+            Education engineered around you. With fully personalized intelligence, Buddy is the companion that turns complex industrial training into an interactive, anywhere-anytime mastery experience.
           </p>
 
           <div className="flex flex-col md:flex-row md:items-center gap-6 border-t border-b border-border py-5">
@@ -63,7 +60,7 @@ function CoursesPage() {
                   className={`text-[11px] tracking-display uppercase px-3 py-2 border transition-colors ${
                     cat === c ? "bg-foreground text-background border-foreground" : "border-border hover:border-foreground"
                   }`}>
-                  {c === "All" ? "All" : c.split(" ")[0]}
+                  {c}
                 </button>
               ))}
             </div>
@@ -72,7 +69,7 @@ function CoursesPage() {
 
         <section className="mx-auto max-w-7xl px-6 md:px-12 pb-32">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-14">
-            {visible.map((c) => <CourseCard key={c.id} course={c} />)}
+            {visible.map((c) => <CourseCard key={c.id} course={c} onEnroll={() => setEnrollCourse(c)} />)}
           </div>
           {visible.length === 0 && (
             <div className="text-center py-20 text-muted-foreground text-sm">No courses match your search.</div>
@@ -80,24 +77,72 @@ function CoursesPage() {
         </section>
       </div>
       <SiteFooter />
+
+      {enrollCourse && <EnrollModal course={enrollCourse} onClose={() => setEnrollCourse(null)} />}
     </div>
   );
 }
 
-function CourseCard({ course }: { course: Course }) {
+function EnrollModal({ course, onClose }: { course: Course; onClose: () => void }) {
   const nav = useNavigate();
-  const [hover, setHover] = useState(false);
+  const [code, setCode] = useState("");
+  const [error, setError] = useState("");
 
-  const open = () => {
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (code.length !== 6) {
+      setError("Enter the full 6-digit course code");
+      return;
+    }
+    onClose();
     nav({ to: "/courses/$courseId", params: { courseId: course.id } });
   };
+
+  return (
+    <div className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in" onClick={onClose}>
+      <form
+        onClick={(e) => e.stopPropagation()}
+        onSubmit={submit}
+        className="bg-background w-full max-w-md p-8 md:p-10 rounded-sm border border-border shadow-2xl"
+      >
+        <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-3">— Enroll</div>
+        <h3 className="font-serif text-2xl md:text-3xl mb-2">{course.title}</h3>
+        <p className="text-sm text-muted-foreground mb-6">Enter the 6-digit enrollment code provided by your mentor.</p>
+
+        <input
+          autoFocus
+          inputMode="numeric"
+          pattern="\d{6}"
+          maxLength={6}
+          value={code}
+          onChange={(e) => { setCode(e.target.value.replace(/\D/g, "").slice(0, 6)); setError(""); }}
+          placeholder="• • • • • •"
+          className="w-full border border-border rounded-md px-4 py-4 text-xl tracking-[0.6em] text-center font-mono focus:outline-none focus:border-accent"
+        />
+        {error && <p className="text-xs text-red-600 mt-2">{error}</p>}
+
+        <div className="flex gap-3 mt-6">
+          <button type="button" onClick={onClose} className="flex-1 border border-border py-3 text-[11px] tracking-[0.25em] uppercase hover:bg-secondary">
+            Cancel
+          </button>
+          <button type="submit" className="flex-1 bg-foreground text-background py-3 text-[11px] tracking-[0.25em] uppercase hover:bg-accent hover:text-foreground transition-colors">
+            Enroll
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+function CourseCard({ course, onEnroll }: { course: Course; onEnroll: () => void }) {
+  const [hover, setHover] = useState(false);
 
   return (
     <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className="group relative cursor-pointer flex flex-col"
-      onClick={open}
+      onClick={onEnroll}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-muted rounded-sm">
         <img src={course.image} alt={course.title}
