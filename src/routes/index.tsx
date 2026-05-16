@@ -28,7 +28,7 @@ function Index() {
       <SiteNav variant="light" mode="pill" />
 
       {/* Hero — solid black with container scroll animation */}
-      <section className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-black text-white flex flex-col">
+      <section className="relative h-[100svh] min-h-[680px] w-full bg-black text-white flex flex-col">
         <div className="pt-28 md:pt-32 pb-0 flex flex-col items-center text-center px-6 relative z-10">
           <div className="text-[10px] md:text-xs tracking-[0.3em] uppercase opacity-70 mb-6">
             Tissa Jinasena Group Presents
