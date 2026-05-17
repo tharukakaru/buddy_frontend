@@ -36,8 +36,8 @@ export function SiteNav({ variant = "dark", mode = "default" }: SiteNavProps) {
       <header className="absolute top-0 left-0 right-0 z-50">
         <div className="mx-auto max-w-[980px] px-4 pt-5 md:pt-7">
           <nav
-            className="mx-auto flex h-12 md:h-14 items-center justify-center gap-4 md:gap-7 rounded-full border border-[#e8c25a]/30 px-4 md:px-7 text-[#3a2a08] shadow-[0_10px_40px_-12px_rgba(212,160,40,0.45)] backdrop-blur-2xl"
-            style={{ background: "linear-gradient(135deg, rgba(255,225,130,0.40), rgba(232,178,60,0.40))" }}
+            className="mx-auto flex h-12 md:h-14 items-center justify-center gap-4 md:gap-7 rounded-full border border-[#e8c25a]/20 px-4 md:px-7 text-[#3a2a08] shadow-[0_10px_40px_-12px_rgba(212,160,40,0.35)] backdrop-blur-2xl"
+            style={{ background: "linear-gradient(135deg, rgba(255,225,130,0.20), rgba(232,178,60,0.20))" }}
           >
             <Link to="/about" className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-[#7a4f00] transition-colors">
               About Us
