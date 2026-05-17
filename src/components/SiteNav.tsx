@@ -37,7 +37,7 @@ export function SiteNav({ variant = "dark", mode = "default" }: SiteNavProps) {
         <div className="mx-auto max-w-[980px] px-4 pt-5 md:pt-7">
           <nav
             className="relative mx-auto flex h-12 md:h-14 items-center justify-between rounded-full border border-[#e8c25a]/20 px-4 md:px-6 text-[#3a2a08] shadow-[0_10px_40px_-12px_rgba(212,160,40,0.35)] backdrop-blur-2xl"
-            style={{ background: "linear-gradient(135deg, rgba(255,225,130,0.20), rgba(232,178,60,0.20))" }}
+            style={{ background: "linear-gradient(135deg, rgba(255,225,130,0.10), rgba(232,178,60,0.10))" }}
           >
             <div className="flex items-center gap-5 md:gap-8">
               <Link to="/about" className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-[#7a4f00] transition-colors">
