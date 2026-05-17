@@ -28,7 +28,7 @@ function Index() {
       <SiteNav variant="light" mode="pill" />
 
       {/* Hero — solid black with container scroll animation */}
-      <section className="relative h-[100svh] min-h-[680px] w-full bg-black text-white flex flex-col overflow-hidden">
+      <section className="relative h-[100svh] min-h-[680px] w-full bg-black text-white flex flex-col overflow-visible">
         {/* Wavy yellow blobs — looping ambient motion */}
         <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
           <svg className="absolute -left-40 -top-40 w-[55vw] h-[55vw] opacity-[0.18] blur-3xl animate-blob-a" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
