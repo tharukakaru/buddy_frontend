@@ -36,26 +36,26 @@ export function SiteNav({ variant = "dark", mode = "default" }: SiteNavProps) {
       <header className="absolute top-0 left-0 right-0 z-50">
         <div className="mx-auto max-w-[980px] px-4 pt-5 md:pt-7">
           <nav
-            className="relative mx-auto flex h-12 md:h-14 items-center justify-between rounded-full border border-[#e8c25a]/20 px-4 md:px-6 text-[#3a2a08] shadow-[0_10px_40px_-12px_rgba(212,160,40,0.35)] backdrop-blur-2xl"
+            className="relative mx-auto flex h-12 md:h-14 items-center justify-between rounded-full px-4 md:px-6 text-white backdrop-blur-2xl"
             style={{ background: "linear-gradient(135deg, rgba(255,225,130,0.10), rgba(232,178,60,0.10))" }}
           >
             <div className="flex items-center gap-5 md:gap-8">
-              <Link to="/about" className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-[#7a4f00] transition-colors">
+              <Link to="/about" className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-[#f4d873] transition-colors">
                 About Us
               </Link>
-              <Link to="/foundation" className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-[#7a4f00] transition-colors">
+              <Link to="/foundation" className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-[#f4d873] transition-colors">
                 JFT
               </Link>
             </div>
             <Link
               to="/"
-              className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 font-serif text-[11px] md:text-[13px] tracking-[0.26em] uppercase text-[#2a1d05] whitespace-nowrap"
+              className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 font-serif text-[11px] md:text-[13px] tracking-[0.26em] uppercase text-[#f4d873] whitespace-nowrap"
             >
               <img src={jftLogo} alt="" className="h-6 md:h-7 w-auto drop-shadow-sm" />
               <span>Tissa Jinasena Group</span>
             </Link>
             <div className="flex items-center gap-3 md:gap-4">
-              <button onClick={goCourses} className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-[#7a4f00] transition-colors">
+              <button onClick={goCourses} className="text-[10px] md:text-[11px] tracking-[0.22em] uppercase opacity-90 hover:text-[#f4d873] transition-colors">
                 Courses
               </button>
               {auth.loggedIn && (
