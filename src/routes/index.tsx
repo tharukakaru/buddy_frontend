@@ -90,8 +90,8 @@ function Index() {
               "Buddy is not merely an information tool — it is a knowledge companion designed to elevate human consciousness. Built on the four-decade vision of Dr. Tissa Jinasena, it weaves entrepreneurial mindset with the essence of Buddhist philosophy."
             </p>
           </div>
-          <div className="relative md:-mt-12 md:-mr-16 lg:-mr-24">
-            <img src={knowledgeGrid} alt="Buddy knowledge interface" className="w-full h-auto object-contain scale-110 md:scale-125 origin-right" />
+          <div className="relative md:mt-16 lg:mt-24 md:-mr-20 lg:-mr-32">
+            <img src={knowledgeGrid} alt="Buddy knowledge interface" className="w-full h-auto object-contain scale-125 md:scale-150 lg:scale-[1.6] origin-right" />
           </div>
         </div>
       </section>
