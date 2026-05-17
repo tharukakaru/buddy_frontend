@@ -74,7 +74,7 @@ function Index() {
 
       {/* Introduction — text left, knowledge-grid right (image-34 layout) */}
       <section className="relative bg-background text-foreground z-10">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-16 pt-56 md:pt-80 pb-24 md:pb-32 grid md:grid-cols-[0.95fr_1.15fr] gap-10 md:gap-16 items-start">
+        <div className="mx-auto max-w-[1500px] px-6 md:px-16 pt-56 md:pt-80 pb-24 md:pb-32 grid md:grid-cols-[0.8fr_1.35fr] gap-10 md:gap-12 items-start">
           <div className="relative">
             <div className="flex gap-1 text-accent text-xl md:text-2xl font-serif mb-8 leading-none">
               <span>"</span><span>"</span>
