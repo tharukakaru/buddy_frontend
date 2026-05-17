@@ -28,7 +28,19 @@ function Index() {
       <SiteNav variant="light" mode="pill" />
 
       {/* Hero — solid black with container scroll animation */}
-      <section className="relative h-[100svh] min-h-[680px] w-full bg-black text-white flex flex-col">
+      <section className="relative h-[100svh] min-h-[680px] w-full bg-black text-white flex flex-col overflow-hidden">
+        {/* Wavy yellow blobs — looping ambient motion */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          <svg className="absolute -left-40 -top-40 w-[55vw] h-[55vw] opacity-[0.18] blur-3xl animate-blob-a" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#f4c542" d="M48.8,-58.2C61.1,-46.7,67.5,-29.4,69.6,-12.1C71.7,5.2,69.5,22.5,60.3,35.5C51.1,48.5,34.9,57.2,17.3,63.2C-0.3,69.3,-19.3,72.7,-34.7,65.6C-50.1,58.5,-61.9,40.9,-67,21.7C-72.1,2.5,-70.5,-18.3,-60.7,-32.2C-50.9,-46.1,-32.9,-53.1,-15.3,-58.9C2.3,-64.7,36.5,-69.7,48.8,-58.2Z" transform="translate(100 100)"/>
+          </svg>
+          <svg className="absolute right-[-15vw] top-[20vh] w-[40vw] h-[40vw] opacity-[0.14] blur-3xl animate-blob-b" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#e8a838" d="M42.2,-52.1C55.7,-42.5,68.2,-29.7,71.8,-14.5C75.4,0.7,70.1,18.4,60.5,32.9C50.9,47.4,37,58.7,20.8,64.6C4.6,70.5,-13.9,71,-29.4,64.3C-44.9,57.6,-57.4,43.8,-63.7,27.6C-70,11.5,-70.1,-6.9,-63.8,-22.6C-57.5,-38.3,-44.8,-51.2,-30.4,-60.4C-16,-69.6,0.1,-75.1,15.4,-72.4C30.7,-69.7,28.7,-61.8,42.2,-52.1Z" transform="translate(100 100)"/>
+          </svg>
+          <svg className="absolute left-[30vw] bottom-[-10vh] w-[35vw] h-[35vw] opacity-[0.12] blur-3xl animate-blob-c" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fbd76b" d="M39.5,-49.4C52.6,-39.8,65.7,-29.3,69.6,-15.9C73.5,-2.6,68.2,13.6,59.2,26.5C50.2,39.4,37.5,49,23.1,55.6C8.7,62.2,-7.4,65.9,-22.7,62.6C-38,59.3,-52.5,49.1,-60.9,35C-69.3,20.9,-71.6,2.9,-66.6,-12.4C-61.5,-27.7,-49.1,-40.2,-35.4,-49.7C-21.7,-59.2,-6.7,-65.7,4.2,-70.7C15.2,-75.7,26.4,-58.9,39.5,-49.4Z" transform="translate(100 100)"/>
+          </svg>
+        </div>
         <div className="pt-28 md:pt-32 pb-0 flex flex-col items-center text-center px-6 relative z-10">
           <div className="text-[10px] md:text-xs tracking-[0.3em] uppercase opacity-70 mb-6">
             Tissa Jinasena Group Presents
@@ -62,7 +74,7 @@ function Index() {
 
       {/* Introduction — text left, knowledge-grid right (image-34 layout) */}
       <section className="relative bg-background text-foreground z-10">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-16 pt-56 md:pt-80 pb-24 md:pb-32 grid md:grid-cols-[0.95fr_1.15fr] gap-10 md:gap-16 items-start">
+        <div className="mx-auto max-w-[1500px] px-6 md:px-16 pt-56 md:pt-80 pb-24 md:pb-32 grid md:grid-cols-[0.8fr_1.35fr] gap-10 md:gap-12 items-start">
           <div className="relative">
             <div className="flex gap-1 text-accent text-xl md:text-2xl font-serif mb-8 leading-none">
               <span>"</span><span>"</span>
@@ -78,8 +90,8 @@ function Index() {
               "Buddy is not merely an information tool — it is a knowledge companion designed to elevate human consciousness. Built on the four-decade vision of Dr. Tissa Jinasena, it weaves entrepreneurial mindset with the essence of Buddhist philosophy."
             </p>
           </div>
-          <div className="relative md:-mt-4 md:-mr-8">
-            <img src={knowledgeGrid} alt="Buddy knowledge interface" className="w-full h-auto object-contain" />
+          <div className="relative md:-mt-12 md:-mr-16 lg:-mr-24">
+            <img src={knowledgeGrid} alt="Buddy knowledge interface" className="w-full h-auto object-contain scale-110 md:scale-125 origin-right" />
           </div>
         </div>
       </section>
