@@ -67,46 +67,49 @@ function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-foreground text-background flex flex-col">
-      <div className="flex justify-between items-center px-8 py-6">
-        <div className="font-serif tracking-[0.4em] uppercase text-xs">Tissa Jinasena Group</div>
-        <button onClick={finish} className="text-[11px] tracking-display uppercase opacity-60 hover:opacity-100">Skip →</button>
+    <div className="h-screen w-screen overflow-hidden bg-foreground text-background flex flex-col">
+      {/* Top bar — fixed compact height */}
+      <div className="flex justify-between items-center px-6 md:px-8 py-4 shrink-0">
+        <div className="font-serif tracking-[0.4em] uppercase text-[10px] md:text-xs">Tissa Jinasena Group</div>
+        <button onClick={finish} className="text-[10px] md:text-[11px] tracking-display uppercase opacity-60 hover:opacity-100 transition-opacity">Skip →</button>
       </div>
 
-      <div className="flex-1 grid md:grid-cols-2 gap-12 px-8 md:px-16 items-center">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
+      {/* Middle content — flex-1 so it fills remaining space; min-h-0 prevents overflow */}
+      <div className="flex-1 min-h-0 grid md:grid-cols-2 gap-6 md:gap-10 px-6 md:px-16 items-center pb-2">
+        <div className="relative h-full max-h-[55vh] md:max-h-[70vh] overflow-hidden rounded-sm">
           {slide.isVideo ? (
-            <video src={slide.media} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+           <video src={slide.media} autoPlay loop muted playsInline className="w-full h-full object-contain" />
           ) : (
-            <img src={slide.media} alt="" className="w-full h-full object-cover" />
+            <img src={slide.media} alt="" className="w-full h-full object-contain" />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
         </div>
-        <div>
-          <div className="text-[11px] tracking-display uppercase text-accent mb-6">— {slide.eyebrow}</div>
-          <h1 className="font-serif text-4xl md:text-6xl leading-tight">{slide.title}</h1>
-          <p className="mt-6 text-background/70 text-base md:text-lg leading-relaxed max-w-lg">{slide.body}</p>
+        <div className="flex flex-col justify-center">
+          <div className="text-[10px] md:text-[11px] tracking-display uppercase text-accent mb-3 md:mb-5">— {slide.eyebrow}</div>
+          <h1 className="font-serif text-2xl md:text-4xl lg:text-5xl leading-tight">{slide.title}</h1>
+          <p className="mt-3 md:mt-5 text-background/70 text-sm md:text-base leading-relaxed max-w-lg">{slide.body}</p>
         </div>
       </div>
 
-      <div className="flex items-center justify-between px-8 md:px-16 py-10">
+      {/* Bottom controls — fixed compact height */}
+      <div className="flex items-center justify-between px-6 md:px-16 py-5 md:py-7 shrink-0">
         <div className="flex gap-2">
           {SLIDES.map((_, idx) => (
-            <div key={idx} className={`h-px transition-all ${idx === i ? "bg-accent w-12" : "bg-background/20 w-6"}`} />
+            <div key={idx} className={`h-px transition-all ${idx === i ? "bg-accent w-10 md:w-12" : "bg-background/20 w-5 md:w-6"}`} />
           ))}
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-2 md:gap-3">
           {i > 0 && (
-            <button onClick={() => setI(i - 1)} className="px-6 py-3 text-xs tracking-[0.3em] uppercase border border-background/30 hover:border-background">
+            <button onClick={() => setI(i - 1)} className="px-5 md:px-6 py-2.5 md:py-3 text-[10px] md:text-xs tracking-[0.3em] uppercase border border-background/30 hover:border-background hover:bg-white hover:text-foreground transition-colors">
               ← Back
             </button>
           )}
           {!last ? (
-            <button onClick={() => setI(i + 1)} className="px-8 py-3 text-xs tracking-[0.3em] uppercase bg-accent text-foreground hover:bg-accent/90">
+            <button onClick={() => setI(i + 1)} className="px-6 md:px-8 py-2.5 md:py-3 text-[10px] md:text-xs tracking-[0.3em] uppercase bg-accent text-foreground hover:bg-white hover:text-foreground transition-colors">
               Next →
             </button>
           ) : (
-            <button onClick={finish} className="px-8 py-3 text-xs tracking-[0.3em] uppercase bg-accent text-foreground hover:bg-accent/90">
+            <button onClick={finish} className="px-6 md:px-8 py-2.5 md:py-3 text-[10px] md:text-xs tracking-[0.3em] uppercase bg-accent text-foreground hover:bg-white hover:text-foreground transition-colors">
               Get Started ✦
             </button>
           )}

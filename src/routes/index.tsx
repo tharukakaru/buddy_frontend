@@ -2,11 +2,13 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import { AnimatedText } from "@/components/ui/animated-shiny-text";
 import buddyHead from "@/assets/buddy-head.png";
 import knowledgeGrid from "@/assets/knowledge-grid.png";
 import buddyVideo from "@/assets/robot-white.mp4";
 import foundationLand from "@/assets/foundation-land.jpg";
 import absolxLogo from "@/assets/absolx-logo.png";
+import heroBgImg from "@/assets/12.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -27,36 +29,52 @@ function Index() {
     <div className="bg-background text-foreground">
       <SiteNav variant="light" mode="pill" />
 
-      {/* Hero — solid black with container scroll animation */}
-      <section className="relative h-[100svh] min-h-[680px] w-full bg-black text-white flex flex-col overflow-visible">
-        {/* Wavy yellow blobs — looping ambient motion */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          <svg className="absolute -left-40 -top-40 w-[55vw] h-[55vw] opacity-[0.18] blur-3xl animate-blob-a" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#f4c542" d="M48.8,-58.2C61.1,-46.7,67.5,-29.4,69.6,-12.1C71.7,5.2,69.5,22.5,60.3,35.5C51.1,48.5,34.9,57.2,17.3,63.2C-0.3,69.3,-19.3,72.7,-34.7,65.6C-50.1,58.5,-61.9,40.9,-67,21.7C-72.1,2.5,-70.5,-18.3,-60.7,-32.2C-50.9,-46.1,-32.9,-53.1,-15.3,-58.9C2.3,-64.7,36.5,-69.7,48.8,-58.2Z" transform="translate(100 100)"/>
-          </svg>
-          <svg className="absolute right-[-15vw] top-[20vh] w-[40vw] h-[40vw] opacity-[0.14] blur-3xl animate-blob-b" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#e8a838" d="M42.2,-52.1C55.7,-42.5,68.2,-29.7,71.8,-14.5C75.4,0.7,70.1,18.4,60.5,32.9C50.9,47.4,37,58.7,20.8,64.6C4.6,70.5,-13.9,71,-29.4,64.3C-44.9,57.6,-57.4,43.8,-63.7,27.6C-70,11.5,-70.1,-6.9,-63.8,-22.6C-57.5,-38.3,-44.8,-51.2,-30.4,-60.4C-16,-69.6,0.1,-75.1,15.4,-72.4C30.7,-69.7,28.7,-61.8,42.2,-52.1Z" transform="translate(100 100)"/>
-          </svg>
-          <svg className="absolute left-[30vw] bottom-[-10vh] w-[35vw] h-[35vw] opacity-[0.12] blur-3xl animate-blob-c" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#fbd76b" d="M39.5,-49.4C52.6,-39.8,65.7,-29.3,69.6,-15.9C73.5,-2.6,68.2,13.6,59.2,26.5C50.2,39.4,37.5,49,23.1,55.6C8.7,62.2,-7.4,65.9,-22.7,62.6C-38,59.3,-52.5,49.1,-60.9,35C-69.3,20.9,-71.6,2.9,-66.6,-12.4C-61.5,-27.7,-49.1,-40.2,-35.4,-49.7C-21.7,-59.2,-6.7,-65.7,4.2,-70.7C15.2,-75.7,26.4,-58.9,39.5,-49.4Z" transform="translate(100 100)"/>
-          </svg>
-        </div>
+      {/* Hero — image bg w dark overlay */}
+      <section className="relative h-[100svh] min-h-[680px] w-full text-white flex flex-col overflow-visible">
+        {/* Bg image */}
+        <img
+          src={heroBgImg}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+        {/* Dark overlay for text readability */}
+        <div aria-hidden className="absolute inset-0 bg-black/55 z-0" />
+        {/* Bottom fade into next section */}
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-black z-0" />
+
         <div className="pt-28 md:pt-32 pb-0 flex flex-col items-center text-center px-6 relative z-10">
-          <div className="text-[10px] md:text-xs tracking-[0.3em] uppercase opacity-70 mb-6">
-            Tissa Jinasena Group Presents
+
+          {/* BUDDY wordmark — Animated shiny text (Playfair Display) */}
+          <div className="hero-fade-2 hero-shiny-wrap">
+            <AnimatedText
+              text="BUDDY"
+              textClassName="text-[10vw] md:text-[5vw] font-hero tracking-[0.2em]"
+            />
           </div>
-          <h1 className="font-serif text-[15vw] md:text-[9vw] leading-[0.85] tracking-tight">
-            BUDDY
-          </h1>
-          <p className="mt-6 max-w-xl text-xs md:text-sm opacity-85 font-sinhala leading-relaxed">
-            බුද්ධිය යනු සංකීර්ණ දෑ සරල කිරීමේ හැකියාවයි.
-          </p>
-          <p className="mt-2 max-w-xl text-[10px] md:text-xs opacity-60">
-            Wisdom is the ability to make the complex simple.
-          </p>
-          <div className="mt-6 flex flex-col items-center">
-            <span className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase opacity-70">Powered by</span>
-            <img src={absolxLogo} alt="AbsolX" className="h-14 md:h-16 w-auto -mt-2" />
+
+          {/* Gold hairline accent */}
+          <div className="hero-fade-3 -mt-2 md:-mt-4 h-px w-20 bg-gradient-to-r from-transparent via-[#ffffff] to-transparent" />
+
+          {/* Rotating description — cycles thru 3 lines on loop */}
+          <div className="hero-fade-3 mt-4 desc-cycle text-white/70 font-display font-medium">
+            <span className="text-[8px] md:text-[10px] tracking-[0.4em] uppercase">
+              Tissa Jinasena Group Proudly Presents
+            </span>
+            <span className="text-[8px] md:text-[10px] tracking-[0.4em] uppercase">
+              Wisdom is the ability to make the complex simple
+            </span>
+            <span className="font-sinhala text-[10px] md:text-[12px] tracking-normal normal-case">
+              බුද්ධිය යනු සංකීර්ණ දෑ සරල කිරීමේ හැකියාවයි
+            </span>
+          </div>
+
+          {/* Powered by */}
+          <div className="hero-fade-4 mt-14 md:mt-16 flex flex-col items-center">
+            <span className="text-[6px] md:text-[7px] tracking-[0.4em] uppercase text-white/45 font-display">
+              Powered by
+            </span>
+            <img src={absolxLogo} alt="AbsolX" className="h-32 md:h-40 w-auto -mt-12 md:-mt-14" />
           </div>
         </div>
 

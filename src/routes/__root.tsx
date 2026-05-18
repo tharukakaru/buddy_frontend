@@ -79,11 +79,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "A knowledge companion for the next generation of Sri Lanka." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "BUDDY — Jinasena Padanama" },
       { name: "twitter:description", content: "A knowledge companion for the next generation of Sri Lanka." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b48585e3-1cf6-48e3-985b-702b78c94699/id-preview-93ff0b1c--a1ec5703-bd7e-49a1-be7b-9c30ffbd66f9.lovable.app-1778864678560.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b48585e3-1cf6-48e3-985b-702b78c94699/id-preview-93ff0b1c--a1ec5703-bd7e-49a1-be7b-9c30ffbd66f9.lovable.app-1778864678560.png" },
     ],
     links: [
       {
