@@ -14,7 +14,7 @@ export type Course = {
   whatYouLearn: string[];
   includes: string[];
 };
-
+//
 const cover = (seed: string) =>
   `https://images.unsplash.com/photo-${seed}?auto=format&fit=crop&w=900&q=80`;
 
