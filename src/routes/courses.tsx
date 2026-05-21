@@ -1,9 +1,11 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { Search, Star, Heart, Check, BadgeCheck } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { COURSES, type Course } from "@/lib/courses-data";
+import { getSubjects } from "@/lib/course-api";
+import { COURSES, courseFromSubject, type Course } from "@/lib/courses-data";
 import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/courses")({
@@ -16,19 +18,41 @@ export const Route = createFileRoute("/courses")({
   }),
 });
 
-const CATEGORIES = ["All", "Foundation", "Engineering", "Technology", "Electrical", "Automation", "Mechanical"];
+const CATEGORIES = [
+  "All",
+  "Foundation",
+  "Engineering",
+  "Technology",
+  "Electrical",
+  "Automation",
+  "Mechanical",
+];
 
 function CoursesPage() {
   const [cat, setCat] = useState("All");
   const [q, setQ] = useState("");
   const [enrollCourse, setEnrollCourse] = useState<Course | null>(null);
+  const subjectsQuery = useQuery({
+    queryKey: ["subjects"],
+    queryFn: getSubjects,
+    staleTime: 1000 * 60 * 5,
+  });
+
+  const courses = useMemo(
+    () => (subjectsQuery.data?.length ? subjectsQuery.data.map(courseFromSubject) : COURSES),
+    [subjectsQuery.data],
+  );
 
   const visible = useMemo(
-    () => COURSES.filter((c) =>
-      (cat === "All" || c.category === cat) &&
-      (q === "" || c.title.toLowerCase().includes(q.toLowerCase()) || c.desc.toLowerCase().includes(q.toLowerCase()))
-    ),
-    [cat, q]
+    () =>
+      courses.filter(
+        (c) =>
+          (cat === "All" || c.category === cat) &&
+          (q === "" ||
+            c.title.toLowerCase().includes(q.toLowerCase()) ||
+            c.desc.toLowerCase().includes(q.toLowerCase())),
+      ),
+    [cat, courses, q],
   );
 
   return (
@@ -36,12 +60,16 @@ function CoursesPage() {
       <SiteNav />
       <div className="pt-32">
         <section className="mx-auto max-w-6xl px-6 md:px-12 pb-12">
-          <div className="text-[11px] tracking-display uppercase text-muted-foreground mb-6">— Buddy JIT</div>
+          <div className="text-[11px] tracking-display uppercase text-muted-foreground mb-6">
+            — Buddy JIT
+          </div>
           <h1 className="font-serif text-3xl md:text-5xl leading-[1.15] mb-6 max-w-4xl">
             Sri Lanka's first AI-powered vocational education ecosystem.
           </h1>
           <p className="text-muted-foreground max-w-2xl mb-10 leading-relaxed">
-            Education engineered around you. With fully personalized intelligence, Buddy is the companion that turns complex industrial training into an interactive, anywhere-anytime mastery experience.
+            Education engineered around you. With fully personalized intelligence, Buddy is the
+            companion that turns complex industrial training into an interactive, anywhere-anytime
+            mastery experience.
           </p>
 
           <div className="flex flex-col md:flex-row md:items-center gap-6 border-t border-b border-border py-5">
@@ -56,23 +84,40 @@ function CoursesPage() {
             </div>
             <div className="flex flex-wrap gap-2">
               {CATEGORIES.map((c) => (
-                <button key={c} onClick={() => setCat(c)}
+                <button
+                  key={c}
+                  onClick={() => setCat(c)}
                   className={`text-[11px] tracking-display uppercase px-3 py-2 border transition-colors ${
-                    cat === c ? "bg-foreground text-background border-foreground" : "border-border hover:border-foreground"
-                  }`}>
+                    cat === c
+                      ? "bg-foreground text-background border-foreground"
+                      : "border-border hover:border-foreground"
+                  }`}
+                >
                   {c}
                 </button>
               ))}
             </div>
           </div>
+          {subjectsQuery.isError && (
+            <p className="mt-3 text-xs text-red-600">
+              Live course list failed to load. Showing local course cards for now.
+            </p>
+          )}
+          {subjectsQuery.isLoading && (
+            <p className="mt-3 text-xs text-muted-foreground">Loading live course list...</p>
+          )}
         </section>
 
         <section className="mx-auto max-w-7xl px-6 md:px-12 pb-32">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-14">
-            {visible.map((c) => <CourseCard key={c.id} course={c} onEnroll={() => setEnrollCourse(c)} />)}
+            {visible.map((c) => (
+              <CourseCard key={c.id} course={c} onEnroll={() => setEnrollCourse(c)} />
+            ))}
           </div>
           {visible.length === 0 && (
-            <div className="text-center py-20 text-muted-foreground text-sm">No courses match your search.</div>
+            <div className="text-center py-20 text-muted-foreground text-sm">
+              No courses match your search.
+            </div>
           )}
         </section>
       </div>
@@ -99,7 +144,10 @@ function EnrollModal({ course, onClose }: { course: Course; onClose: () => void 
   };
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in"
+      onClick={onClose}
+    >
       <form
         onClick={(e) => e.stopPropagation()}
         onSubmit={submit}
@@ -107,7 +155,9 @@ function EnrollModal({ course, onClose }: { course: Course; onClose: () => void 
       >
         <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-3">— Enroll</div>
         <h3 className="font-serif text-2xl md:text-3xl mb-2">{course.title}</h3>
-        <p className="text-sm text-muted-foreground mb-6">Enter the 6-digit enrollment code provided by your mentor.</p>
+        <p className="text-sm text-muted-foreground mb-6">
+          Enter the 6-digit enrollment code provided by your mentor.
+        </p>
 
         <input
           autoFocus
@@ -115,17 +165,27 @@ function EnrollModal({ course, onClose }: { course: Course; onClose: () => void 
           pattern="\d{6}"
           maxLength={6}
           value={code}
-          onChange={(e) => { setCode(e.target.value.replace(/\D/g, "").slice(0, 6)); setError(""); }}
+          onChange={(e) => {
+            setCode(e.target.value.replace(/\D/g, "").slice(0, 6));
+            setError("");
+          }}
           placeholder="• • • • • •"
           className="w-full border border-border rounded-md px-4 py-4 text-xl tracking-[0.6em] text-center font-mono focus:outline-none focus:border-accent"
         />
         {error && <p className="text-xs text-red-600 mt-2">{error}</p>}
 
         <div className="flex gap-3 mt-6">
-          <button type="button" onClick={onClose} className="flex-1 border border-border py-3 text-[11px] tracking-[0.25em] uppercase hover:bg-secondary">
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex-1 border border-border py-3 text-[11px] tracking-[0.25em] uppercase hover:bg-secondary"
+          >
             Cancel
           </button>
-          <button type="submit" className="flex-1 bg-foreground text-background py-3 text-[11px] tracking-[0.25em] uppercase hover:bg-accent hover:text-foreground transition-colors">
+          <button
+            type="submit"
+            className="flex-1 bg-foreground text-background py-3 text-[11px] tracking-[0.25em] uppercase hover:bg-accent hover:text-foreground transition-colors"
+          >
             Enroll
           </button>
         </div>
@@ -145,12 +205,17 @@ function CourseCard({ course, onEnroll }: { course: Course; onEnroll: () => void
       onClick={onEnroll}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-muted rounded-sm">
-        <img src={course.image} alt={course.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <img
+          src={course.image}
+          alt={course.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
       </div>
 
       <div className="pt-3 space-y-1.5">
-        <h3 className="font-serif text-[15px] leading-tight line-clamp-2 group-hover:text-[#6d28d9] transition-colors">{course.title}</h3>
+        <h3 className="font-serif text-[15px] leading-tight line-clamp-2 group-hover:text-[#6d28d9] transition-colors">
+          {course.title}
+        </h3>
         {course.siTitle && (
           <p className="font-sinhala text-xs text-muted-foreground">{course.siTitle}</p>
         )}
@@ -162,11 +227,18 @@ function CourseCard({ course, onEnroll }: { course: Course; onEnroll: () => void
         </div>
         {course.tag && (
           <div className="flex gap-1.5 pt-1">
-            <span className={`text-[9px] px-2 py-0.5 tracking-wider uppercase font-semibold leading-tight ${
-              course.tag === "Bestseller" ? "bg-amber-100 text-amber-900" :
-              course.tag === "Premium" ? "bg-[#6d28d9] text-white" : "bg-amber-100 text-amber-800"
-            }`}>
-              {course.tag === "Bestseller" ? "Be grateful for free education given by Jinasena Padanama" : course.tag}
+            <span
+              className={`text-[9px] px-2 py-0.5 tracking-wider uppercase font-semibold leading-tight ${
+                course.tag === "Bestseller"
+                  ? "bg-amber-100 text-amber-900"
+                  : course.tag === "Premium"
+                    ? "bg-[#6d28d9] text-white"
+                    : "bg-amber-100 text-amber-800"
+              }`}
+            >
+              {course.tag === "Bestseller"
+                ? "Be grateful for free education given by Jinasena Padanama"
+                : course.tag}
             </span>
           </div>
         )}
@@ -186,13 +258,26 @@ function CourseCard({ course, onEnroll }: { course: Course; onEnroll: () => void
               </span>
             )}
           </div>
-          <p className="text-[11px] text-emerald-700 font-semibold mb-1">Updated <span className="font-bold">January 2026</span></p>
-          <p className="text-[11px] text-muted-foreground mb-3">{course.hours}h total · {course.level} · {course.days} days</p>
+          <p className="text-[11px] text-emerald-700 font-semibold mb-1">
+            Updated <span className="font-bold">January 2026</span>
+          </p>
+          <p className="text-[11px] text-muted-foreground mb-3">
+            {course.hours}h total · {course.level} · {course.days} days
+          </p>
           <p className="text-[12px] leading-relaxed mb-3 text-foreground">{course.desc}</p>
           <ul className="space-y-1.5 text-[12px] mb-4">
-            <li className="flex gap-2"><Check className="w-3.5 h-3.5 text-foreground shrink-0 mt-0.5" /> Adaptive AI tutoring with Buddy</li>
-            <li className="flex gap-2"><Check className="w-3.5 h-3.5 text-foreground shrink-0 mt-0.5" /> Daily quizzes recalibrate your level</li>
-            <li className="flex gap-2"><Check className="w-3.5 h-3.5 text-foreground shrink-0 mt-0.5" /> Mentor support whenever you're stuck</li>
+            <li className="flex gap-2">
+              <Check className="w-3.5 h-3.5 text-foreground shrink-0 mt-0.5" /> Adaptive AI tutoring
+              with Buddy
+            </li>
+            <li className="flex gap-2">
+              <Check className="w-3.5 h-3.5 text-foreground shrink-0 mt-0.5" /> Daily quizzes
+              recalibrate your level
+            </li>
+            <li className="flex gap-2">
+              <Check className="w-3.5 h-3.5 text-foreground shrink-0 mt-0.5" /> Mentor support
+              whenever you're stuck
+            </li>
           </ul>
           <div className="flex items-center gap-2">
             <div className="flex-1 bg-[#6d28d9] hover:bg-[#5b21b6] text-white text-center py-2.5 text-[12px] font-bold tracking-wide rounded-sm">
