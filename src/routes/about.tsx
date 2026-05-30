@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import buddyVideo from "@/assets/robot-white.mp4";
-import aboutMockups from "@/assets/about-mockups.png";
+import aboutMockups from "@/assets/about-mockpus.jpeg";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,

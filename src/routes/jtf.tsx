@@ -3,13 +3,13 @@ import { useRef } from "react";
 import { ChevronRight, ChevronLeft, Sparkles, GraduationCap, Cpu, Sprout, Leaf, Brain, Heart } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import founder from "@/assets/founder.jpg";
-import jft1 from "@/assets/jft-1.jpg";
-import jft2 from "@/assets/jft-2.jpg";
-import jft3 from "@/assets/jft-3.jpg";
-import jft4 from "@/assets/jft-4.jpg";
-import jft5 from "@/assets/jft-5.jpg";
-import jft6 from "@/assets/jft-6.jpg";
+import founder from "@/assets/founder.jpeg";
+import jft1 from "@/assets/jft-1.jpeg";
+import jft2 from "@/assets/jft-2.jpeg";
+import jft3 from "@/assets/jft-3.jpeg";
+import jft4 from "@/assets/jft-4.jpeg";
+import jft5 from "@/assets/jft-5.jpeg";
+import jft6 from "@/assets/jft-6.jpeg";
 
 export const Route = createFileRoute("/jtf")({
   component: JtfPage,
